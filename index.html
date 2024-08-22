@@ -8,37 +8,52 @@
     <title>Love Gambling</title>
 </head>
 <body>
+    <!-- game area -->
     <div id="game-zone-div">
         <div id="game-zone">
+            <!-- computers card -->
             <div id="computer-div">
                 <div>
                     <p>Computer</p>
-                    <div id="computers-card" class="card">0</div>
+                    <div id="computers-card" class="card">K</div>
                 </div>
             </div>
+            <!-- computer and players scores -->
+            <div id="scores">
+                <div>
+                    <p>Computers Score:</p>
+                    <span id="computer-score">0</span>
+                </div>
+                <div>
+                    <p>Player 1 Score:</p>
+                    <span id="player1-score">0</span>
+                </div>
+            </div>
+            <!-- players cards -->
             <div id="users-div">
                 <div>
                     <p>1</p>
-                    <div id="user1-card" class="card">0</div>
+                    <div id="user1-card" class="card">A</div>
                 </div>
-                <div>
+                <!-- <div>
                     <p>2</p>
                     <div id="user2-card" class="card">0</div>
                 </div>
                 <div>
                     <p>3</p>
                     <div id="user3-card" class="card">0</div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
+    <!-- button area -->
     <div id="button-div">
-        <div id="players-div">
+        <div id="num-players-div">
             <p>Players</p>
-            <button id="rmv-player">-</button>
-            <button id="add-player">+</button>
+            <button date-type="rmv-player" class="btn btn--red">-</button>
+            <button data-type="add-player" class="btn btn--blue">+</button>
         </div>
-        <button id="play-button">Draw!</button>
+        <button data-type="play-button" class="btn btn--green">Draw!</button>
     </div>
     <script src="assets/js/script.js"></script>
 </body>

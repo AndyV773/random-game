@@ -1,15 +1,13 @@
+/* imported google fonts */
+
+
+/* globle styles */
 body {
     position: relative;
+    background-color: #ccc;
 }
 
-.card {
-    background-color: #fff;
-    width: 3rem;
-    height: 6rem;
-    margin: 10px;
-    border-radius: 5px;
-}
-
+/* game area */
 #game-zone-div {
     display: flex;
     justify-content: center;
@@ -18,7 +16,7 @@ body {
 
 #game-zone {
     background-color: #009900;
-    width: 75%;
+    width: 80%;
     height: 70vh;
     margin-top: 40px;
     border-radius: 15px;
@@ -26,6 +24,20 @@ body {
     flex-wrap: wrap;
 }
 
+.card {
+    background-color: #fff;
+    width: 5rem;
+    height: 6rem;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 0;
+}
+
+/* computers card */
 #computer-div {
     display: flex;
     justify-content: center;
@@ -33,16 +45,26 @@ body {
     width: 100%;
 }
 
+
 #computers-card {
     
 }
 
+/* computer and players scores */
+#scores {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+/* players cards */
 #users-div {
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-self: flex-end;
     flex-wrap: wrap;
+    padding-bottom: 10px;
 }
 
 #user1-card {
@@ -57,35 +79,36 @@ body {
     order: 2;
 }
 
+/* button area */
 #button-div {
     display: flex;
     justify-content: space-around;
 }
 
-#players-div {
+#num-players-div {
     margin: 10px 10px;
 }
 
-#players-div > button {
-    font-size: 2rem;
+.btn {
     font-weight: bold;
     border-radius: 5px;
+    font-size: 1.5rem;
+}
+
+#num-players-div > .btn {
     width: 60px;
     height: 50px;
 }
 
-#add-player {
+.btn--blue {
     background-color: #3399ff;
 }
 
-#rmv-player {
+.btn--red {
     background-color: #ff3333;
 }
 
-#play-button {
-    margin-top: 30px;
-    font-weight: bold;
-    border-radius: 5px;
-    font-size: 1.5rem;
+.btn--green {
+    margin: 10px 0;
     background-color: #00cc00;
 }
