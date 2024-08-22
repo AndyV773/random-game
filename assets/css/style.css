@@ -1,3 +1,25 @@
 body {
-    background-color: aqua;
+    position: relative;
+}
+
+#game-zone-div {
+    display: flex;
+    justify-content: center;
+}
+
+#game-zone {
+    background-color: #009900;
+    width: 75%;
+    height: 70vh;
+    margin-top: 40px;
+    border-radius: 15px;
+}
+
+#button-div {
+    display: flex;
+    justify-content: center;
+}
+
+#play-button {
+    margin-top: 30px;
 }
