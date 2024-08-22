@@ -2,9 +2,18 @@ body {
     position: relative;
 }
 
+.card {
+    background-color: #fff;
+    width: 3rem;
+    height: 6rem;
+    margin: 10px;
+    border-radius: 5px;
+}
+
 #game-zone-div {
     display: flex;
     justify-content: center;
+    flex: row wrap;
 }
 
 #game-zone {
@@ -13,13 +22,70 @@ body {
     height: 70vh;
     margin-top: 40px;
     border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#computer-div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#computers-card {
+    
+}
+
+#users-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-self: flex-end;
+    flex-wrap: wrap;
+}
+
+#user1-card {
+    order: 0;
+}
+
+#user2-card {
+    order: 1;
+}
+
+#user3-card {
+    order: 2;
 }
 
 #button-div {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+}
+
+#players-div {
+    margin: 10px 10px;
+}
+
+#players-div > button {
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 60px;
+    height: 50px;
+}
+
+#add-player {
+    background-color: #3399ff;
+}
+
+#rmv-player {
+    background-color: #ff3333;
 }
 
 #play-button {
     margin-top: 30px;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    background-color: #00cc00;
 }
