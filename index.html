@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,39 +8,37 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Love Gambling</title>
 </head>
+
 <body>
     <!-- game area -->
     <div id="game-zone-div">
         <div id="game-zone">
             <!-- computers card -->
             <div id="computer-div">
-                <div>
+                <div class="center">
                     <p>Computer</p>
-                    <div id="computers-card" class="card">K</div>
+                    <div id="computers-card" class="card">0</div>
                 </div>
             </div>
             <!-- computer and players scores -->
-            <div id="scores">
-                <div>
-                    <p>Computers Score:</p>
-                    <span id="computer-score">0</span>
-                </div>
-                <div>
-                    <p>Player 1 Score:</p>
-                    <span id="player1-score">0</span>
+            <div id="scores-outer-div">
+                <div id="scores-inner-div">
+                    <p>Computers Score: <span id="computer-score">0</span></p>
+                    <p>Player 1 Score: <span id="player1-score">0</span></p>
+                    <p>Player 2 Score: <span id="player1-score">0</span></p>
                 </div>
             </div>
             <!-- players cards -->
             <div id="users-div">
                 <div>
-                    <p>1</p>
+                    <p class="center">P1</p>
                     <div id="user1-card" class="card">A</div>
                 </div>
-                <!-- <div>
-                    <p>2</p>
+                <div>
+                    <p class="center">P2</p>
                     <div id="user2-card" class="card">0</div>
                 </div>
-                <div>
+                <!-- <div>
                     <p>3</p>
                     <div id="user3-card" class="card">0</div>
                 </div> -->
@@ -55,6 +54,23 @@
         </div>
         <button data-type="play-button" class="btn btn--green">Draw!</button>
     </div>
+    <!-- lower buttons area -->
+    <div id="stake-funds-main-div">
+        <div id="stake-div">
+            <button data-type="change-stake" class="btn--yellow">Change Stake</button>
+            <div class="stake-box">5</div>
+            <div class="stake-box">10</div>
+            <div class="stake-box">20</div>
+        </div>
+        <div id="funds-div">
+            <button data-type="add-funds" class="btn--gray">Add Funds</button>
+            <p>Funds: <span id="player-funds">0</span></p>
+        </div>
+    </div>
+    <div id="cash-out-div">
+        <button data-type="cash-out" class="btn--pink">Cash Out!</button>
+    </div>
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>

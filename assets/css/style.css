@@ -1,5 +1,5 @@
 /* imported google fonts */
-
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 
 /* globle styles */
 body {
@@ -18,7 +18,7 @@ body {
     background-color: #009900;
     width: 80%;
     height: 70vh;
-    margin-top: 40px;
+    margin-top: 20px;
     border-radius: 15px;
     display: flex;
     flex-wrap: wrap;
@@ -27,14 +27,18 @@ body {
 .card {
     background-color: #fff;
     width: 5rem;
-    height: 6rem;
+    height: 5.5rem;
     margin: 10px;
     border-radius: 5px;
     font-size: 3rem;
     font-weight: bold;
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 0;
+    padding-top: 25px;
+    font-family: "Dancing Script", cursive;
+}
+
+.center {
+    text-align: center;
 }
 
 /* computers card */
@@ -45,13 +49,15 @@ body {
     width: 100%;
 }
 
-
-#computers-card {
-    
+#computer-div p {
+    height: 10px;
+    margin: 5px 0;
 }
 
+#computers-card {}
+
 /* computer and players scores */
-#scores {
+#scores-outer-div {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -64,7 +70,7 @@ body {
     justify-content: space-around;
     align-self: flex-end;
     flex-wrap: wrap;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 
 #user1-card {
@@ -86,7 +92,7 @@ body {
 }
 
 #num-players-div {
-    margin: 10px 10px;
+    margin: 5px 10px;
 }
 
 .btn {
@@ -95,7 +101,7 @@ body {
     font-size: 1.5rem;
 }
 
-#num-players-div > .btn {
+#num-players-div>.btn {
     width: 60px;
     height: 50px;
 }
@@ -111,4 +117,66 @@ body {
 .btn--green {
     margin: 10px 0;
     background-color: #00cc00;
+}
+
+/* lower buttons area */
+#stake-funds-main-div {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+#stake-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.btn--yellow {
+    background-color: #fff000;
+    border-radius: 5px;
+    height: 47px;
+    font-weight: bold;
+}
+
+.stake-box {
+    width: 50px;
+    height: 32px;
+    background-color: #fff;
+    text-align: center;
+    padding-top: 13px;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+#funds-div {
+    display: flex;
+    justify-content: center;
+}
+
+.btn--gray {
+    background-color: #999;
+    border-radius: 5px;
+    margin: 10px 15px;
+    height: 47px;
+    font-weight: bold;
+}
+
+#cash-out-div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn--pink {
+    background-color: #ff66ff;
+    border-radius: 5px;
+    margin: 5px;
+    font-weight: bold;
+    padding: 5px 20px;
+    font-size: 2rem;
 }
