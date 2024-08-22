@@ -31,30 +31,30 @@ document.addEventListener("DOMContentLoaded", function () {
  * pairs them up with a card index 
  * adds the numbers to the corresponding cards
  */
-function runGame() {
-    let num1 = Math.floor(Math.random() * 12);
-    let num2 = Math.floor(Math.random() * 12);
-    let computerCard = document.getElementById(computers-card);
-    let user1Card = document.getElementById(user1-card);
+// function runGame() {
+//     let num1 = Math.floor(Math.random() * 12);
+//     let num2 = Math.floor(Math.random() * 12);
+//     let computerCard = document.getElementById(computers-card);
+//     let user1Card = document.getElementById(user1-card);
 
-    num1 || num2 === "0" ? "2";
-    num1 || num2 === "1" ? "3";
-    num1 || num2 === "2" ? "4";
-    num1 || num2 === "3" ? "5";
-    num1 || num2 === "4" ? "6";
-    num1 || num2 === "5" ? "7";
-    num1 || num2 === "6" ? "8";
-    num1 || num2 === "7" ? "9";
-    num1 || num2 === "8" ? "10";
-    num1 || num2 === "9" ? "j";
-    num1 || num2 === "10" ? "k";
-    num1 || num2 === "11" ? "q";
-    num1 || num2 === "12" ? "a";
+//     num1 || num2 === "0" ? "2";
+//     num1 || num2 === "1" ? "3";
+//     num1 || num2 === "2" ? "4";
+//     num1 || num2 === "3" ? "5";
+//     num1 || num2 === "4" ? "6";
+//     num1 || num2 === "5" ? "7";
+//     num1 || num2 === "6" ? "8";
+//     num1 || num2 === "7" ? "9";
+//     num1 || num2 === "8" ? "10";
+//     num1 || num2 === "9" ? "j";
+//     num1 || num2 === "10" ? "k";
+//     num1 || num2 === "11" ? "q";
+//     num1 || num2 === "12" ? "a";
 
-    computerCard.innerText = num1;
-    user1Card.innerText = num2;
+//     computerCard.innerText = num1;
+//     user1Card.innerText = num2;
 
-}
+// }
 
 /**
  * adds player to game board when click + button
