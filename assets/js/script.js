@@ -31,30 +31,33 @@ document.addEventListener("DOMContentLoaded", function () {
  * pairs them up with a card index 
  * adds the numbers to the corresponding cards
  */
-// function runGame() {
-//     let num1 = Math.floor(Math.random() * 12);
-//     let num2 = Math.floor(Math.random() * 12);
-//     let computerCard = document.getElementById(computers-card);
-//     let user1Card = document.getElementById(user1-card);
+function runGame() {
+    let cardArray = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "K", "Q", "A"];
 
-//     num1 || num2 === "0" ? "2";
-//     num1 || num2 === "1" ? "3";
-//     num1 || num2 === "2" ? "4";
-//     num1 || num2 === "3" ? "5";
-//     num1 || num2 === "4" ? "6";
-//     num1 || num2 === "5" ? "7";
-//     num1 || num2 === "6" ? "8";
-//     num1 || num2 === "7" ? "9";
-//     num1 || num2 === "8" ? "10";
-//     num1 || num2 === "9" ? "j";
-//     num1 || num2 === "10" ? "k";
-//     num1 || num2 === "11" ? "q";
-//     num1 || num2 === "12" ? "a";
+    // random array from https://stackoverflow.com/questions/43267033/understanding-the-use-of-math-floor-when-randomly-accessing-an-array
+    let num1 = cardArray[Math.floor(Math.random() * cardArray.length)];
+    let num2 = cardArray[Math.floor(Math.random() * cardArray.length)];
+    let num3 = cardArray[Math.floor(Math.random() * cardArray.length)];
+    let computerCard = document.getElementById("computers-card");
+    let user1Card = document.getElementById("user1-card");
 
-//     computerCard.innerText = num1;
-//     user1Card.innerText = num2;
+    computerCard.innerText = num1;
+    user1Card.innerText = num2;
 
-// }
+    let user2 = document.getElementById("user2-card");
+    if (user2) {
+        user2.innerHTML = num3;
+    };
+
+}
+
+/**
+ * gets the card numbers from runGame() and works out the higher card
+ * then returns the winner 
+ */
+function checkResult() {
+
+}
 
 /**
  * adds player to game board when click + button
@@ -65,7 +68,7 @@ function addPlayer() {
     let html = `
         <div>
             <p class="center">P2</p>
-            <div id="user2-card" class="card">0</div>
+            <div id="user2-card" class="card"></div>
         </div>
     `;
     let scoresDiv = document.getElementById("scores-inner-div");
