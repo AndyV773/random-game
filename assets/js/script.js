@@ -6,6 +6,7 @@ const addButton = document.getElementById("add-player");
 const playButton = document.getElementById("play-button");
 const stakeButton = document.getElementById("change-stake");
 const addFundsButton = document.getElementById("add-funds");
+const stakeBox = document.getElementsByClassName("stake-box");
 
 /**
  * gets two random numbers one for the computer and one for the user
@@ -15,6 +16,19 @@ const addFundsButton = document.getElementById("add-funds");
 function runGame(event) {
 
     let cardArray = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "K", "Q", "A"];
+    // cardArray[0].value = 1;
+    // cardArray[1].value = 2;
+    // cardArray[2].value = 3;
+    // cardArray[3].value = 4;
+    // cardArray[4].value = 5;
+    // cardArray[5].value = 6;
+    // cardArray[6].value = 7;
+    // cardArray[7].value = 8;
+    // cardArray[8].value = 9;
+    // cardArray[9].value = 10;
+    // cardArray[10].value = 11;
+    // cardArray[11].value = 12;
+    // cardArray[12].value = 13;
 
     // random array from https://stackoverflow.com/questions/43267033/understanding-the-use-of-math-floor-when-randomly-accessing-an-array
     let num1 = cardArray[Math.floor(Math.random() * cardArray.length)];
@@ -46,32 +60,35 @@ function runGame(event) {
  */
 function checkResultPlayer1(num1, num2) {
 
+    let player1Result = document.getElementById("player1-result");
+
     if (runGame)
         if (num1 < num2) {
             ifPlayer1Wins();
-            console.log("Player 1 Wins!");
+            player1Result.innerText = "You Win!";
         } else if (num1 === num2) {
-        console.log("Player 1 Draw!");
+        player1Result.innerText = "It's a Draw!";
     } else {
         ifComputerWins();
-        console.log("Player 1 Loses!");
+        player1Result.innerText = "You Loses!";
     };
 
 }
 
 function checkResultPlayer2(num1, num3) {
+    let player2Result = document.getElementById("player2-result");
 
     let user2 = document.getElementById("user2-card");
     if (user2) {
         if (runGame)
             if (num1 < num3) {
                 ifPlayer2Wins();
-                console.log("Player 2 Wins!");
+                player2Result.innerText = "You Win!";
             } else if (num1 === num3) {
-            console.log("Player 2 Draw!");
+                player2Result.innerText = "It's a Draw!";
         } else {
             ifComputerWins();
-            console.log("Player 2 Loses!");
+            player2Result.innerText = "You Loses!";
         };
     };
 
@@ -86,6 +103,7 @@ function addPlayer() {
     let html = `
         <div>
             <p class="center">P2</p>
+            <p id="player2-result" class="center"></p>
             <div id="user2-card" class="card"></div>
         </div>
     `;
@@ -122,28 +140,19 @@ function rmvPlayer() {
     };
 }
 
-// function stakeValue() {
-//     let stakeBox = document.getElementsByClassName("stake-box");
+/**
+ * changes color of stake ammount when selected
+ */
+function stakeValue() {
+    
+    // code from https://www.w3schools.com/howto/howto_js_image_grid.asp
+    current = document.getElementsByClassName("active");
 
-//     let stake5 = document.getElementById("stake-5");
-//     let stake10 = document.getElementById("stake-10");
-//     let stake20 = document.getElementById("stake-20");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+    
 
-//     // stake5.style.backgroundColor = "white";
-//     // stake10.style.backgroundColor = "white";
-//     // stake20.style.backgroundColor = "white";
-
-//     if (this.style.backgroundColor === "white") {
-//         stakeBox[0].style.backgroundColor = "orange";
-//     } else if (stake5.style.backgroundColor === "orange" && stake10.style.backgroundColor === "white" && stake20.style.backgroundColor === "white") {
-//         stake10.style.backgroundColor = "orange";
-//     } else if (stake5.style.backgroundColor === "white" && stake10.style.backgroundColor === "orange" && stake20.style.backgroundColor === "white") {
-//         stake20.style.backgroundColor = "orange";
-//     } else {
-//         alert('error')
-//     };
-
-// }
+}
 
 function addFunds() {
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
@@ -188,5 +197,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
     playButton.addEventListener("click", runGame);
     // stakeButton.addEventListener("click", stakeValue);
     addFundsButton.addEventListener("click", addFunds);
+    
+    for (box of stakeBox) {
+        box.addEventListener("click", stakeValue);
+    }
 
 });

@@ -9,10 +9,12 @@
     <title>Love Gambling</title>
 </head>
 
-<body>
+<body></body>
+    <h1 id="heading">Love Gambling</h1>
     <!-- game area -->
     <div id="game-zone-div">
         <div id="game-zone">
+            <!-- <button id="refresh"><i class="fa-solid fa-arrows-rotate"></i></button> -->
             <!-- computers card -->
             <div id="computer-div">
                 <div class="center">
@@ -31,6 +33,7 @@
             <div id="users-div">
                 <div>
                     <p class="center">P1</p>
+                    <p id="player1-result" class="center"></p>
                     <div id="user1-card" class="card"></div>
                 </div>
             </div>
@@ -48,10 +51,10 @@
     <!-- lower buttons area -->
     <div id="stake-funds-main-div">
         <div id="stake-div">
-            <button id="change-stake" class="btn--yellow">Change Stake</button>
-            <div id="stake-5" class="stake-box">5</div>
-            <div id="stake-10" class="stake-box">10</div>
-            <div id="stake-20" class="stake-box">20</div>
+            <p>Change Stake</p>
+            <button id="stake-5" class="stake-box active">5</button>
+            <button id="stake-10" class="stake-box">10</button>
+            <button id="stake-20" class="stake-box">20</button>
         </div>
         <div id="funds-div">
             <button id="add-funds" class="btn--gray">Add Funds</button>
@@ -61,6 +64,10 @@
     <div id="cash-out-div">
         <button id="cash-out" class="btn--pink">Cash Out!</button>
     </div>
+
+    <!-- font awesome kit -->
+    <script src="https://kit.fontawesome.com/73c0fc54c9.js" crossorigin="anonymous"></script>
+
     <script src="assets/js/script.js"></script>
 </body>
 
