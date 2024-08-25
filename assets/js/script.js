@@ -6,6 +6,7 @@ const addButton = document.getElementById("add-player");
 const playButton = document.getElementById("play-button");
 const addFundsButton = document.getElementById("add-funds");
 const stakeBtn = document.getElementsByClassName("stake-btn");
+const cashOutButton = document.getElementById("cash-out");
 
 /**
  * gets two random numbers one for the computer and one for the user
@@ -191,67 +192,107 @@ function addFunds() {
  */
 function checkFunds() {
 
-    let Funds = parseInt(document.getElementById("player-funds").innerText);
+    let funds = parseInt(document.getElementById("player-funds").innerText);
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
+    let user2 = document.getElementById("user2-card");
 
-    if (active === 5 && Funds < 5) {
-        alert("Please add funds");
-    } else if (active === 10 && Funds < 10) {
-        alert("Please add funds");
-    } else if (active === 20 && Funds < 20) {
-        alert("Please add funds");
+    if (user2) {
+        if (active === 5 && funds < 10) {
+            alert("Please add funds");
+        } else if (active === 10 && funds < 20) {
+            alert("Please add funds");
+        } else if (active === 20 && funds < 40) {
+            alert("Please add funds");
+        } else {
+            runGame();
+        }
     } else {
-        runGame();
+        if (active === 5 && funds < 5) {
+            alert("Please add funds");
+        } else if (active === 10 && funds < 10) {
+            alert("Please add funds");
+        } else if (active === 20 && funds < 20) {
+            alert("Please add funds");
+        } else {
+            runGame();
+        }
     }
-
 }
 
+/**
+ * if the computer wins will remove the selected stake amount from funds
+ * and add to the computers score
+ */
 function ifComputerWins() {
 
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
     let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
+    let oldFunds = parseInt(document.getElementById("player-funds").innerText);
 
     if (active === 20) {
         document.getElementById("computer-score").innerText = oldComputerScore + 20;
+        document.getElementById("player-funds").innerText = oldFunds - 20;
     } else if (active === 10) {
         document.getElementById("computer-score").innerText = oldComputerScore + 10;
+        document.getElementById("player-funds").innerText = oldFunds - 10;
     } else {
         document.getElementById("computer-score").innerText = oldComputerScore + 5;
+        document.getElementById("player-funds").innerText = oldFunds - 5;
     }
 
 }
 
+/**
+ * if player one wins will remove the selected stake amount from funds
+ * and add to player one's score
+ */
 function ifPlayer1Wins() {
 
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
     let oldPlayer1Score = parseInt(document.getElementById("player1-score").innerText);
+    let oldFunds = parseInt(document.getElementById("player-funds").innerText);
 
     if (active === 20) {
         document.getElementById("player1-score").innerText = oldPlayer1Score + 20;
+        document.getElementById("player-funds").innerText = oldFunds - 20;
     } else if (active === 10) {
         document.getElementById("player1-score").innerText = oldPlayer1Score + 10;
+        document.getElementById("player-funds").innerText = oldFunds - 10;
     } else {
         document.getElementById("player1-score").innerText = oldPlayer1Score + 5;
+        document.getElementById("player-funds").innerText = oldFunds - 5;
     }
 
 }
 
+/**
+ * if player two wins will remove the selected stake amount from funds
+ * and add to player two's score
+ */
 function ifPlayer2Wins() {
 
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
     let user2 = document.getElementById("user2-card");
+    let oldFunds = parseInt(document.getElementById("player-funds").innerText);
 
     if (user2) {
         let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
         if (active === 20) {
             document.getElementById("player2-score").innerText = oldPlayer2Score + 20;
+            document.getElementById("player-funds").innerText = oldFunds - 20;
         } else if (active === 10) {
             document.getElementById("player2-score").innerText = oldPlayer2Score + 10;
+            document.getElementById("player-funds").innerText = oldFunds - 10;
         } else {
             document.getElementById("player2-score").innerText = oldPlayer2Score + 5;
+            document.getElementById("player-funds").innerText = oldFunds - 5;
         }
     };
 
+}
+
+function cashOut() {
+    alert("You cashed out");
 }
 
 // get the button elements and add event listeners to them
@@ -262,6 +303,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     playButton.addEventListener("click", checkFunds);
     // stakeButton.addEventListener("click", stakeValue);
     addFundsButton.addEventListener("click", addFunds);
+    cashOutButton.addEventListener("click", cashOut);
 
     for (buttons of stakeBtn) {
         buttons.addEventListener("click", stakeValue);
