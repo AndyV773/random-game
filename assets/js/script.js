@@ -200,6 +200,9 @@ function addFunds() {
         alert("Sorry you can't add anymore funds");
     }
 
+    let oldcost = parseInt(document.getElementById("player-cost").innerText);
+    document.getElementById("player-cost").innerText = oldcost + 5;
+
 }
 
 /**
@@ -245,13 +248,13 @@ function ifComputerWins() {
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
 
     if (active === 20) {
-        document.getElementById("computer-score").innerText = oldComputerScore + 20;
+        document.getElementById("computer-score").innerText = oldComputerScore + 40;
         document.getElementById("player-funds").innerText = oldFunds - 20;
     } else if (active === 10) {
-        document.getElementById("computer-score").innerText = oldComputerScore + 10;
+        document.getElementById("computer-score").innerText = oldComputerScore + 20;
         document.getElementById("player-funds").innerText = oldFunds - 10;
     } else {
-        document.getElementById("computer-score").innerText = oldComputerScore + 5;
+        document.getElementById("computer-score").innerText = oldComputerScore + 10;
         document.getElementById("player-funds").innerText = oldFunds - 5;
     }
 
@@ -268,13 +271,13 @@ function ifPlayer1Wins() {
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
 
     if (active === 20) {
-        document.getElementById("player1-score").innerText = oldPlayer1Score + 20;
+        document.getElementById("player1-score").innerText = oldPlayer1Score + 40;
         document.getElementById("player-funds").innerText = oldFunds - 20;
     } else if (active === 10) {
-        document.getElementById("player1-score").innerText = oldPlayer1Score + 10;
+        document.getElementById("player1-score").innerText = oldPlayer1Score + 20;
         document.getElementById("player-funds").innerText = oldFunds - 10;
     } else {
-        document.getElementById("player1-score").innerText = oldPlayer1Score + 5;
+        document.getElementById("player1-score").innerText = oldPlayer1Score + 10;
         document.getElementById("player-funds").innerText = oldFunds - 5;
     }
 
@@ -287,19 +290,19 @@ function ifPlayer1Wins() {
 function ifPlayer2Wins() {
 
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
-    let user2 = document.getElementById("user2-card");
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
+    let user2 = document.getElementById("user2-card");
 
     if (user2) {
         let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
         if (active === 20) {
-            document.getElementById("player2-score").innerText = oldPlayer2Score + 20;
+            document.getElementById("player2-score").innerText = oldPlayer2Score + 40;
             document.getElementById("player-funds").innerText = oldFunds - 20;
         } else if (active === 10) {
-            document.getElementById("player2-score").innerText = oldPlayer2Score + 10;
+            document.getElementById("player2-score").innerText = oldPlayer2Score + 20;
             document.getElementById("player-funds").innerText = oldFunds - 10;
         } else {
-            document.getElementById("player2-score").innerText = oldPlayer2Score + 5;
+            document.getElementById("player2-score").innerText = oldPlayer2Score + 10;
             document.getElementById("player-funds").innerText = oldFunds - 5;
         }
     };
@@ -307,7 +310,17 @@ function ifPlayer2Wins() {
 }
 
 function cashOut() {
-    alert("You cashed out");
+
+    // let computerScore = parseInt(document.getElementById("computer-score").innerText);
+    let player1Score = parseInt(document.getElementById("player1-score").innerText);
+    // let player2Score = parseInt(document.getElementById("player2-score").innerText);
+    let cashOutTotal = parseInt(document.getElementById("cash-out-total").innerText);
+
+    if (player1Score > 0) {
+        document.getElementById("cash-out-total").innerText = cashOutTotal + player1Score;
+    } else {
+        alert("Insufficient Funds");
+    }
 }
 
 // get the button elements and add event listeners to them
