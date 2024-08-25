@@ -1,12 +1,17 @@
 // love maths project was used as a referance and some code was used 
 
 // list of global variables 
+const refreshButton = document.getElementById("refresh");
 const rmvButton = document.getElementById("rmv-player");
 const addButton = document.getElementById("add-player");
 const playButton = document.getElementById("play-button");
 const addFundsButton = document.getElementById("add-funds");
 const stakeBtn = document.getElementsByClassName("stake-btn");
 const cashOutButton = document.getElementById("cash-out");
+
+function refreshPage() {
+    alert("Refresh");
+}
 
 /**
  * gets two random numbers one for the computer and one for the user
@@ -55,8 +60,11 @@ function runGame() {
 }
 
 /**
- * gets the card numbers from runGame() and works out the higher card
- * then returns the winner 
+ * gets the card numbers from runGame() for computer and player 1
+ * then works out the higher card
+ * and calls the correct function for winner
+ * @param {computer} num1 
+ * @param {player 1} num2 
  */
 function checkResultPlayer1(num1, num2) {
 
@@ -75,6 +83,13 @@ function checkResultPlayer1(num1, num2) {
 
 }
 
+/**
+ * gets the card numbers from runGame() for computer and player 2
+ * then works out the higher card
+ * and calls the correct function for winner
+ * @param {computer} num1 
+ * @param {player 2} num3 
+ */
 function checkResultPlayer2(num1, num3) {
     let player2Result = document.getElementById("player2-result");
 
@@ -102,7 +117,7 @@ function addPlayer() {
     let userDiv = document.getElementById("users-div");
     let html = `
         <div>
-            <p class="center">P2</p>
+            <p class="center">Player 2</p>
             <p id="player2-result" class="center"></p>
             <div id="user2-card" class="card"></div>
         </div>
@@ -298,6 +313,7 @@ function cashOut() {
 // get the button elements and add event listeners to them
 window.addEventListener("DOMContentLoaded", (event) => {
 
+    refreshButton.addEventListener("click", refreshPage);
     rmvButton.addEventListener("click", rmvPlayer);
     addButton.addEventListener("click", addPlayer);
     playButton.addEventListener("click", checkFunds);

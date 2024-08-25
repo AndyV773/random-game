@@ -10,11 +10,11 @@
 </head>
 
 <body></body>
+<button id="refresh"><i class="fa-solid fa-arrows-rotate"></i> Refresh</button>
     <h1 id="heading"><img src="assets/images/cards.png" height="50px" width="50px"> Love Gambling</h1>
     <!-- game area -->
     <div id="game-zone-div">
         <div id="game-zone">
-            <!-- <button id="refresh"><i class="fa-solid fa-arrows-rotate"></i></button> -->
             <!-- computers card -->
             <div id="computer-div">
                 <div class="center">
@@ -32,7 +32,7 @@
             <!-- players cards -->
             <div id="users-div">
                 <div>
-                    <p class="center">P1</p>
+                    <p class="center">Player 1</p>
                     <p id="player1-result" class="center"></p>
                     <div id="user1-card" class="card"></div>
                 </div>
@@ -58,12 +58,14 @@
         </div>
         <div id="funds-div">
             <button id="add-funds" class="btn--gray">Add Funds</button>
-            <p>Funds: <span id="player-funds">0</span></p>
+            <p>Funds: <span id="player-funds">0</span><br>
+            Total Costs: <span id="player-cost">0</span></p>
         </div>
     </div>
     <div id="cash-out-div">
         <button id="cash-out" class="btn--pink">Cash Out!</button>
     </div>
+    <p class="center">Total: <span>0</span></p>
 
     <!-- font awesome kit -->
     <script src="https://kit.fontawesome.com/73c0fc54c9.js" crossorigin="anonymous"></script>
