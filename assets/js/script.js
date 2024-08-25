@@ -4,9 +4,8 @@
 const rmvButton = document.getElementById("rmv-player");
 const addButton = document.getElementById("add-player");
 const playButton = document.getElementById("play-button");
-const stakeButton = document.getElementById("change-stake");
 const addFundsButton = document.getElementById("add-funds");
-const stakeBox = document.getElementsByClassName("stake-box");
+const stakeBtn = document.getElementsByClassName("stake-btn");
 
 /**
  * gets two random numbers one for the computer and one for the user
@@ -141,17 +140,35 @@ function rmvPlayer() {
 }
 
 /**
- * changes color of stake ammount when selected
+ * sets background color of stake amount selected to orange 
+ * by moving active class
  */
 function stakeValue() {
     
     // code from https://www.w3schools.com/howto/howto_js_image_grid.asp
-    current = document.getElementsByClassName("active");
+    let active = document.getElementsByClassName("active");
 
-    current[0].className = current[0].className.replace(" active", "");
+    active[0].className = active[0].className.replace(" active", "");
     this.className += " active";
     
+}
 
+/**
+ * alerts the player to let them know how much they have set the stake to
+ */
+function stakeAlert() {
+
+    let active = parseInt(document.getElementsByClassName("active")[0].innerText);
+
+    if (active === 20) {
+        alert("You have changed the stake amount to 20");
+    } else if (active === 10) {
+        alert("You have change stake amount to 10");
+    } else if (active === 5) {
+        alert("Stake is set to 5");
+    } else {
+        alert("Error");
+    }
 }
 
 function addFunds() {
@@ -167,24 +184,48 @@ function addFunds() {
 
 function ifComputerWins() {
 
+    let active = parseInt(document.getElementsByClassName("active")[0].innerText);
     let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
-    document.getElementById("computer-score").innerText = oldComputerScore + 5;
+
+    if (active === 20) {
+        document.getElementById("computer-score").innerText = oldComputerScore + 20;
+    } else if (active === 10) {
+        document.getElementById("computer-score").innerText = oldComputerScore + 10;
+    } else {
+        document.getElementById("computer-score").innerText = oldComputerScore + 5;
+    }
 
 }
 
 function ifPlayer1Wins() {
 
+    let active = parseInt(document.getElementsByClassName("active")[0].innerText);
     let oldPlayer1Score = parseInt(document.getElementById("player1-score").innerText);
-    document.getElementById("player1-score").innerText = oldPlayer1Score + 5;
+
+    if (active === 20) {
+        document.getElementById("player1-score").innerText = oldPlayer1Score + 20;
+    } else if (active === 10) {
+        document.getElementById("player1-score").innerText = oldPlayer1Score + 10;
+    } else {
+        document.getElementById("player1-score").innerText = oldPlayer1Score + 5;
+    }
 
 }
 
 function ifPlayer2Wins() {
 
+    let active = parseInt(document.getElementsByClassName("active")[0].innerText);
     let user2 = document.getElementById("user2-card");
+
     if (user2) {
         let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
-        document.getElementById("player2-score").innerText = oldPlayer2Score + 5;
+        if (active === 20) {
+            document.getElementById("player2-score").innerText = oldPlayer2Score + 20;
+        } else if (active === 10) {
+            document.getElementById("player2-score").innerText = oldPlayer2Score + 10;
+        } else {
+            document.getElementById("player2-score").innerText = oldPlayer2Score + 5;
+        }
     };
 
 }
@@ -198,8 +239,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
     // stakeButton.addEventListener("click", stakeValue);
     addFundsButton.addEventListener("click", addFunds);
     
-    for (box of stakeBox) {
-        box.addEventListener("click", stakeValue);
+    for (buttons of stakeBtn) {
+        buttons.addEventListener("click", stakeValue);
+        buttons.addEventListener("click", stakeAlert);
     }
 
 });
