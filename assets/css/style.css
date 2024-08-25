@@ -123,8 +123,9 @@ body {
 }
 
 .btn--green {
-    margin: 10px 0;
+    margin: 10px 0 5px 0;
     background-color: #00cc00;
+    width: 100px;
 }
 
 /* lower buttons area */

@@ -1,4 +1,4 @@
-// some code taken from love maths project
+// love maths project was used as a referance and some code was used 
 
 // list of global variables 
 const rmvButton = document.getElementById("rmv-player");
@@ -161,16 +161,19 @@ function stakeAlert() {
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
 
     if (active === 20) {
-        alert("You have changed the stake amount to 20");
+        alert("You have set stake to 20");
     } else if (active === 10) {
-        alert("You have change stake amount to 10");
+        alert("You have set stake to 10");
     } else if (active === 5) {
-        alert("Stake is set to 5");
+        alert("You have set stake to 5");
     } else {
         alert("Error");
     }
 }
 
+/**
+ * add funds to the game in increments of 5
+ */
 function addFunds() {
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
     let funds = document.getElementById("player-funds").innerText = oldFunds + 5;
