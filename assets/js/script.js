@@ -12,7 +12,7 @@ const stakeBtn = document.getElementsByClassName("stake-btn");
  * pairs them up with a card index 
  * adds the numbers to the corresponding cards
  */
-function runGame(event) {
+function runGame() {
 
     let cardArray = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "K", "Q", "A"];
     // cardArray[0].value = 1;
@@ -35,18 +35,18 @@ function runGame(event) {
     let num3 = cardArray[Math.floor(Math.random() * cardArray.length)];
 
 
-    if (event) {
-        let computerCard = document.getElementById("computers-card");
-        let user1Card = document.getElementById("user1-card");
 
-        computerCard.innerText = num1;
-        user1Card.innerText = num2;
+    let computerCard = document.getElementById("computers-card");
+    let user1Card = document.getElementById("user1-card");
 
-        let user2 = document.getElementById("user2-card");
-        if (user2) {
-            user2.innerHTML = num3;
-        };
-    }
+    computerCard.innerText = num1;
+    user1Card.innerText = num2;
+
+    let user2 = document.getElementById("user2-card");
+    if (user2) {
+        user2.innerHTML = num3;
+    };
+
 
     checkResultPlayer1(num1, num2);
     checkResultPlayer2(num1, num3);
@@ -84,7 +84,7 @@ function checkResultPlayer2(num1, num3) {
                 ifPlayer2Wins();
                 player2Result.innerText = "You Win!";
             } else if (num1 === num3) {
-                player2Result.innerText = "It's a Draw!";
+            player2Result.innerText = "It's a Draw!";
         } else {
             ifComputerWins();
             player2Result.innerText = "You Loses!";
@@ -144,13 +144,13 @@ function rmvPlayer() {
  * by moving active class
  */
 function stakeValue() {
-    
+
     // code from https://www.w3schools.com/howto/howto_js_image_grid.asp
     let active = document.getElementsByClassName("active");
 
     active[0].className = active[0].className.replace(" active", "");
     this.className += " active";
-    
+
 }
 
 /**
@@ -175,12 +175,33 @@ function stakeAlert() {
  * add funds to the game in increments of 5
  */
 function addFunds() {
+
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
     let funds = document.getElementById("player-funds").innerText = oldFunds + 5;
     let max = 1000;
 
     if (funds > max) {
         alert("Sorry you can't add anymore funds");
+    }
+
+}
+
+/**
+ * checks if the players has enough funds before runing the game
+ */
+function checkFunds() {
+
+    let Funds = parseInt(document.getElementById("player-funds").innerText);
+    let active = parseInt(document.getElementsByClassName("active")[0].innerText);
+
+    if (active === 5 && Funds < 5) {
+        alert("Please add funds");
+    } else if (active === 10 && Funds < 10) {
+        alert("Please add funds");
+    } else if (active === 20 && Funds < 20) {
+        alert("Please add funds");
+    } else {
+        runGame();
     }
 
 }
@@ -238,10 +259,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     rmvButton.addEventListener("click", rmvPlayer);
     addButton.addEventListener("click", addPlayer);
-    playButton.addEventListener("click", runGame);
+    playButton.addEventListener("click", checkFunds);
     // stakeButton.addEventListener("click", stakeValue);
     addFundsButton.addEventListener("click", addFunds);
-    
+
     for (buttons of stakeBtn) {
         buttons.addEventListener("click", stakeValue);
         buttons.addEventListener("click", stakeAlert);
