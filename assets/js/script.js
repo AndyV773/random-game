@@ -175,7 +175,8 @@ function rmvPlayer() {
 
 /**
  * sets background color of stake amount selected to orange 
- * by moving active class
+ * by moving active class and alerts the player
+ * to let them know how much they have set the stake to
  */
 function stakeValue() {
 
@@ -197,24 +198,6 @@ function stakeValue() {
         alert("Error");
     }
 
-}
-
-/**
- * alerts the player to let them know how much they have set the stake to
- */
-function stakeAlert() {
-
-    let active = parseInt(document.getElementsByClassName("active")[0].innerText);
-
-    if (active === 20) {
-        alert("Stake set to 20");
-    } else if (active === 10) {
-        alert("Stake set to 10");
-    } else if (active === 5) {
-        alert("Stake set to 5");
-    } else {
-        alert("Error");
-    }
 }
 
 /**
@@ -381,7 +364,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     for (buttons of stakeButtons) {
         buttons.addEventListener("click", stakeValue);
-        buttons.addEventListener("click", stakeAlert);
     }
 
 });
