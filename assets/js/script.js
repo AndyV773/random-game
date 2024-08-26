@@ -6,11 +6,29 @@ const rmvButton = document.getElementById("rmv-player");
 const addButton = document.getElementById("add-player");
 const playButton = document.getElementById("play-button");
 const addFundsButton = document.getElementById("add-funds");
-const stakeBtn = document.getElementsByClassName("stake-btn");
+const stakeButtons = document.getElementsByClassName("stake-btn");
 const cashOutButton = document.getElementById("cash-out");
 
+/**
+ * other then the amount of players this resets everything back to factory settings
+ */
 function refreshPage() {
-    alert("Refresh");
+    let reset = document.getElementsByClassName("reset");
+
+    for (set of reset) {
+        set.innerText = 0;
+    }
+
+    document.getElementById("player1-result").innerText = "";
+
+    let user2 = document.getElementById("user2-card");
+    if (user2) {
+        document.getElementById("player2-result").innerText = "";
+    }
+    
+
+
+
 }
 
 /**
@@ -30,10 +48,10 @@ function runGame() {
     // cardArray[6].value = 7;
     // cardArray[7].value = 8;
     // cardArray[8].value = 9;
-    // cardArray[9].value = 10;
+    cardArray[9].value = "a";
     // cardArray[10].value = 11;
     // cardArray[11].value = 12;
-    // cardArray[12].value = 13;
+    cardArray[12].value = "x";
 
     // random array from https://stackoverflow.com/questions/43267033/understanding-the-use-of-math-floor-when-randomly-accessing-an-array
     let num1 = cardArray[Math.floor(Math.random() * cardArray.length)];
@@ -78,7 +96,7 @@ function checkResultPlayer1(num1, num2) {
         player1Result.innerText = "It's a Draw!";
     } else {
         ifComputerWins();
-        player1Result.innerText = "You Loses!";
+        player1Result.innerText = "You Lose!";
     };
 
 }
@@ -103,7 +121,7 @@ function checkResultPlayer2(num1, num3) {
             player2Result.innerText = "It's a Draw!";
         } else {
             ifComputerWins();
-            player2Result.innerText = "You Loses!";
+            player2Result.innerText = "You Lose!";
         };
     };
 
@@ -119,12 +137,12 @@ function addPlayer() {
         <div>
             <p class="center">Player 2</p>
             <p id="player2-result" class="center"></p>
-            <div id="user2-card" class="card"></div>
+            <div id="user2-card" class="card reset"></div>
         </div>
     `;
     let scoresDiv = document.getElementById("scores-inner-div");
     let scoresHtml = `
-        <p>Player 2 Score: <span id="player2-score">0</span></p>
+        <p>Player 2 Score: <span id="player2-score" class="reset">0</span></p>
     `;
 
     let user2 = document.getElementById("user2-card");
@@ -167,6 +185,18 @@ function stakeValue() {
     active[0].className = active[0].className.replace(" active", "");
     this.className += " active";
 
+    let currentActive = parseInt(document.getElementsByClassName("active")[0].innerText);
+
+    if (currentActive === 20) {
+        alert("Stake set to 20");
+    } else if (currentActive === 10) {
+        alert("Stake set to 10");
+    } else if (currentActive === 5) {
+        alert("Stake set to 5");
+    } else {
+        alert("Error");
+    }
+
 }
 
 /**
@@ -177,11 +207,11 @@ function stakeAlert() {
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
 
     if (active === 20) {
-        alert("You have set stake to 20");
+        alert("Stake set to 20");
     } else if (active === 10) {
-        alert("You have set stake to 10");
+        alert("Stake set to 10");
     } else if (active === 5) {
-        alert("You have set stake to 5");
+        alert("Stake set to 5");
     } else {
         alert("Error");
     }
@@ -193,7 +223,7 @@ function stakeAlert() {
 function addFunds() {
 
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
-    let funds = document.getElementById("player-funds").innerText = oldFunds + 5;
+    let funds = document.getElementById("player-funds").innerText = oldFunds + 100;
     let max = 1000;
 
     if (funds > max) {
@@ -201,7 +231,7 @@ function addFunds() {
     }
 
     let oldcost = parseInt(document.getElementById("player-cost").innerText);
-    document.getElementById("player-cost").innerText = oldcost + 5;
+    document.getElementById("player-cost").innerText = oldcost + 100;
 
 }
 
@@ -311,16 +341,31 @@ function ifPlayer2Wins() {
 
 function cashOut() {
 
-    // let computerScore = parseInt(document.getElementById("computer-score").innerText);
-    let player1Score = parseInt(document.getElementById("player1-score").innerText);
-    // let player2Score = parseInt(document.getElementById("player2-score").innerText);
-    let cashOutTotal = parseInt(document.getElementById("cash-out-total").innerText);
+    let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
+    let oldPlayer1Score = parseInt(document.getElementById("player1-score").innerText);
+    let oldCashOutTotal = parseInt(document.getElementById("cash-out-total").innerText);
+    let user2 = document.getElementById("user2-card");
 
-    if (player1Score > 0) {
-        document.getElementById("cash-out-total").innerText = cashOutTotal + player1Score;
+    if (user2) {
+        let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
+        let twoPlayerScore = oldPlayer1Score + oldPlayer2Score
+        if (oldPlayer1Score > 0 || oldPlayer2Score > 0) {
+            document.getElementById("cash-out-total").innerText = oldCashOutTotal + twoPlayerScore;
+            document.getElementById("computer-score").innerText = oldComputerScore - oldComputerScore;
+            document.getElementById("player2-score").innerText = oldPlayer2Score - oldPlayer2Score;
+            document.getElementById("player1-score").innerText = oldPlayer1Score - oldPlayer1Score;
+        } else {
+            alert("Insufficient Funds");
+        }
+    } else if (oldPlayer1Score > 0) {
+        document.getElementById("cash-out-total").innerText = oldCashOutTotal + oldPlayer1Score;
+        document.getElementById("computer-score").innerText = oldComputerScore - oldComputerScore;
+        document.getElementById("player1-score").innerText = oldPlayer1Score - oldPlayer1Score;
     } else {
         alert("Insufficient Funds");
     }
+
+
 }
 
 // get the button elements and add event listeners to them
@@ -334,7 +379,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     addFundsButton.addEventListener("click", addFunds);
     cashOutButton.addEventListener("click", cashOut);
 
-    for (buttons of stakeBtn) {
+    for (buttons of stakeButtons) {
         buttons.addEventListener("click", stakeValue);
         buttons.addEventListener("click", stakeAlert);
     }
