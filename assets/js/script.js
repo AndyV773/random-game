@@ -25,10 +25,13 @@ function refreshPage() {
     if (user2) {
         document.getElementById("player2-result").innerText = "";
     }
+
+    // sets stake to 5
+    let setStake5 = document.getElementsByClassName("stake-btn")[0];
+    let active = document.getElementsByClassName("active");
+    active[0].className = active[0].className.replace(" active", "");
+    setStake5.className += " active";
     
-
-
-
 }
 
 /**
