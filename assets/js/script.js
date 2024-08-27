@@ -19,11 +19,17 @@ function refreshPage() {
         set.innerText = 0;
     }
 
-    document.getElementById("player1-result").innerText = "";
+    let cards = document.getElementsByClassName("card");
+    
+    for (card of cards) {
+        this.innerText = " ";
+    }
+
+    document.getElementById("player1-result").innerText = " ";
 
     let user2 = document.getElementById("user2-card");
     if (user2) {
-        document.getElementById("player2-result").innerText = "";
+        document.getElementById("player2-result").innerText = " ";
     }
 
     // sets stake to 5
@@ -41,43 +47,52 @@ function refreshPage() {
  */
 function runGame() {
 
-    let cardArray = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "K", "Q", "A"];
-    // cardArray[0].value = 1;
-    // cardArray[1].value = 2;
-    // cardArray[2].value = 3;
-    // cardArray[3].value = 4;
-    // cardArray[4].value = 5;
-    // cardArray[5].value = 6;
-    // cardArray[6].value = 7;
-    // cardArray[7].value = 8;
-    // cardArray[8].value = 9;
-    cardArray[9].value = "a";
-    // cardArray[10].value = 11;
-    // cardArray[11].value = 12;
-    cardArray[12].value = "x";
+    let cardArray = [{"2" : 1}, {"3" : 2}, {"4" : 3}, {"5" : 4}, {"6" : 5}, {"7" : 6}, {"8" : 7}, {"9" : 8}, {"10" : 9}, {"J" : 10}, {"Q" : 11}, {"K" : 12}, {"A" : 13}];
+
+    const cardDeck = {
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "J": 11,
+        "Q": 12,
+        "K": 13,
+        "A": 14
+    }
+
+    var randomProperty = function (obj) {
+        var keys = cardArray.keys(obj);
+        return obj[keys[ keys.length * Math.random() << 0]];
+    };
+
+    console.log();
+
 
     // random array from https://stackoverflow.com/questions/43267033/understanding-the-use-of-math-floor-when-randomly-accessing-an-array
-    let num1 = cardArray[Math.floor(Math.random() * cardArray.length)];
-    let num2 = cardArray[Math.floor(Math.random() * cardArray.length)];
-    let num3 = cardArray[Math.floor(Math.random() * cardArray.length)];
+    // let num1 = cardArray[Math.floor(Math.random() * cardArray.length)];
+    // let num2 = cardArray[Math.floor(Math.random() * cardArray.length)];
 
 
 
-    let computerCard = document.getElementById("computers-card");
-    let user1Card = document.getElementById("user1-card");
+    // let computerCard = document.getElementById("computers-card");
+    // let user1Card = document.getElementById("user1-card");
 
-    computerCard.innerText = num1;
-    user1Card.innerText = num2;
+    // computerCard.innerText = num1;
+    // user1Card.innerText = num2;
 
     let user2 = document.getElementById("user2-card");
     if (user2) {
+        let num3 = cardArray[Math.floor(Math.random() * cardArray.length)];
         user2.innerHTML = num3;
+        checkResultPlayer2(num1, num3);
     };
 
-
-    checkResultPlayer1(num1, num2);
-    checkResultPlayer2(num1, num3);
-
+    // checkResultPlayer1(num1, num2);
 }
 
 /**
@@ -140,7 +155,7 @@ function addPlayer() {
         <div>
             <p class="center">Player 2</p>
             <p id="player2-result" class="center"></p>
-            <div id="user2-card" class="card reset"></div>
+            <div id="user2-card" class="card"></div>
         </div>
     `;
     let scoresDiv = document.getElementById("scores-inner-div");
@@ -189,16 +204,11 @@ function stakeValue() {
     active[0].className = active[0].className.replace(" active", "");
     this.className += " active";
 
-    let currentActive = parseInt(document.getElementsByClassName("active")[0].innerText);
-
-    if (currentActive === 20) {
-        alert("Stake set to 20");
-    } else if (currentActive === 10) {
-        alert("Stake set to 10");
-    } else if (currentActive === 5) {
-        alert("Stake set to 5");
+    if (active = !undefined) {
+        currentActive = parseInt(document.getElementsByClassName("active")[0].innerText);
+        alert(`Stake set to ${currentActive}`);
     } else {
-        alert("Error");
+        alert(`Error current stake is Unkown`);
     }
 
 }
@@ -241,11 +251,7 @@ function checkFunds() {
             runGame();
         }
     } else {
-        if (active === 5 && funds < 5) {
-            alert("Please add funds");
-        } else if (active === 10 && funds < 10) {
-            alert("Please add funds");
-        } else if (active === 20 && funds < 20) {
+        if (active === 5 && funds < 5 || active === 10 && funds < 10 || active === 10 && funds < 20) {
             alert("Please add funds");
         } else {
             runGame();
