@@ -13,6 +13,7 @@ const cashOutButton = document.getElementById("cash-out");
  * other then the amount of players this resets everything back to factory settings
  */
 function refreshPage() {
+    
     let reset = document.getElementsByClassName("reset");
 
     for (set of reset) {
@@ -90,6 +91,7 @@ function randomCard() {
     let cards = cardArray[Math.floor(Math.random() * cardArray.length)];
 
     return cards;
+
 };
 
 /**
@@ -117,6 +119,7 @@ function runGame() {
     };
 
     checkResultPlayer1(card1.rank, card2.rank);
+
 }
 
 /**
@@ -224,6 +227,7 @@ function rmvPlayer() {
     } else {
         alert("You can't remove anymore players");
     };
+
 }
 
 /**
@@ -296,6 +300,7 @@ function checkFunds() {
             runGame();
         }
     }
+
 }
 
 /**
@@ -370,6 +375,10 @@ function ifPlayer2Wins() {
 
 }
 
+/**
+ * removes the amount from player scores and funds then adds them to total
+ * alerts if funds are not available
+ */
 function cashOut() {
 
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
@@ -381,6 +390,7 @@ function cashOut() {
     if (user2) {
         let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
         let twoPlayerScore = oldPlayer1Score + oldPlayer2Score + oldFunds;
+
         if (oldPlayer1Score > 0 || oldPlayer2Score > 0) {
             document.getElementById("cash-out-total").innerText = oldCashOutTotal + twoPlayerScore;
             document.getElementById("computer-score").innerText = oldComputerScore - oldComputerScore;
@@ -392,6 +402,7 @@ function cashOut() {
         }
     } else if (oldPlayer1Score > 0) {
         let onePlayerScore = oldPlayer1Score + oldFunds;
+
         document.getElementById("cash-out-total").innerText = oldCashOutTotal + onePlayerScore;
         document.getElementById("computer-score").innerText = oldComputerScore - oldComputerScore;
         document.getElementById("player1-score").innerText = oldPlayer1Score - oldPlayer1Score;
@@ -399,7 +410,6 @@ function cashOut() {
     } else {
         alert("Insufficient Funds");
     }
-
 
 }
 
@@ -410,7 +420,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     rmvButton.addEventListener("click", rmvPlayer);
     addButton.addEventListener("click", addPlayer);
     playButton.addEventListener("click", checkFunds);
-    // stakeButton.addEventListener("click", stakeValue);
     addFundsButton.addEventListener("click", addFunds);
     cashOutButton.addEventListener("click", cashOut);
 

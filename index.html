@@ -11,66 +11,81 @@
 
 <body></body>
 <button id="refresh"><i class="fa-solid fa-arrows-rotate"></i> Refresh</button>
-    <h1 id="heading"><img src="assets/images/cards.png" height="50px" width="50px"> Love Gambling</h1>
-    <!-- game area -->
-    <div id="game-zone-div">
-        <div id="game-zone">
-            <!-- computers card -->
-            <div id="computer-div">
-                <div class="center">
-                    <p>Computer</p>
-                    <div id="computers-card" class="card"></div>
-                </div>
+<h1 id="heading"><img src="assets/images/cards.png" height="50px" width="50px"> Love Gambling</h1>
+<a id="play-link" href="#how-to-play">How to play ></a>
+<!-- game area -->
+<div id="game-zone-div">
+    <div id="game-zone">
+        <!-- computers card -->
+        <div id="computer-div">
+            <div class="center">
+                <p>Computer</p>
+                <div id="computers-card" class="card"></div>
             </div>
-            <!-- computer and players scores -->
-            <div id="scores-outer-div">
-                <div id="scores-inner-div">
-                    <p>Computers Score: <span id="computer-score" class="reset">0</span></p>
-                    <p>Player 1 Score: <span id="player1-score" class="reset">0</span></p>
-                </div>
+        </div>
+        <!-- computer and players scores -->
+        <div id="scores-outer-div">
+            <div id="scores-inner-div">
+                <p>Computers Score: <span id="computer-score" class="reset">0</span></p>
+                <p>Player 1 Score: <span id="player1-score" class="reset">0</span></p>
             </div>
-            <!-- players cards -->
-            <div id="users-div">
-                <div>
-                    <p class="center">Player 1</p>
-                    <p id="player1-result" class="center"></p>
-                    <div id="user1-card" class="card"></div>
-                </div>
+        </div>
+        <!-- players cards -->
+        <div id="users-div">
+            <div>
+                <p class="center">Player 1</p>
+                <p id="player1-result" class="center"></p>
+                <div id="user1-card" class="card"></div>
             </div>
         </div>
     </div>
-    <!-- button area -->
-    <div id="button-div">
-        <div id="num-players-div">
-            <p>Players</p>
-            <button id="rmv-player" class="btn btn--red">-</button>
-            <button id="add-player" class="btn btn--blue">+</button>
-        </div>
-        <button id="play-button" class="btn btn--green">BET</button>
+</div>
+<!-- button area -->
+<div id="button-div">
+    <div id="num-players-div">
+        <p>Players</p>
+        <button id="rmv-player" class="btn btn--red">-</button>
+        <button id="add-player" class="btn btn--blue">+</button>
     </div>
-    <!-- lower buttons area -->
-    <div id="stake-funds-main-div">
-        <div id="stake-div">
-            <p>Change Stake</p>
-            <button class="stake-btn active">5</button>
-            <button class="stake-btn">10</button>
-            <button class="stake-btn">20</button>
-        </div>
-        <div id="funds-div">
-            <button id="add-funds" class="btn--gray">Add Funds</button>
-            <p>Funds: <span id="player-funds" class="reset">0</span><br>
+    <button id="play-button" class="btn btn--green">BET</button>
+</div>
+<!-- lower buttons area -->
+<div id="stake-funds-main-div">
+    <div id="stake-div">
+        <p>Change Stake</p>
+        <button class="stake-btn active">5</button>
+        <button class="stake-btn">10</button>
+        <button class="stake-btn">20</button>
+    </div>
+    <div id="funds-div">
+        <button id="add-funds" class="btn--gray">Add Funds</button>
+        <p>Funds: <span id="player-funds" class="reset">0</span><br>
             Total Costs: <span id="player-cost" class="reset">0</span></p>
+    </div>
+</div>
+<div id="cash-out-div">
+    <button id="cash-out" class="btn--pink">Cash Out!</button>
+</div>
+<p class="center">Total: <span id="cash-out-total" class="reset">0</span></p>
+<section id="about-section">
+    <div id="about-div">
+        <h2 class="center">Love Gambling</h2>
+        <div>
+            <h3>Introduction</h3>
+            <p>Love Gambling is based on the classic game "Casino War", it is a game of chance. The goal is to have a higher card than the dealer, which doubles
+                your money. The cards are ranked as they are in poker, with "2" being the lowest and "A" being the
+                highest. For more information, on the classic game check out <a href="https://en.wikipedia.org/wiki/Casino_War"
+                    target="_blank" rel="noopener" aria-label="link to casino war wikipedia (opens in a new tab)">Casino War</a>.</p>
+        </div>
+        <div>
+            <h3 id="how-to-play">How to play</h3>
         </div>
     </div>
-    <div id="cash-out-div">
-        <button id="cash-out" class="btn--pink">Cash Out!</button>
-    </div>
-    <p class="center">Total: <span id="cash-out-total" class="reset">0</span></p>
+</section>
+<!-- font awesome kit -->
+<script src="https://kit.fontawesome.com/73c0fc54c9.js" crossorigin="anonymous"></script>
 
-    <!-- font awesome kit -->
-    <script src="https://kit.fontawesome.com/73c0fc54c9.js" crossorigin="anonymous"></script>
-
-    <script src="assets/js/script.js"></script>
+<script src="assets/js/script.js"></script>
 </body>
 
 </html>
