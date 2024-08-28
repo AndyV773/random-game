@@ -85,7 +85,7 @@ function randomCard() {
         card: "A",
         rank: 14
     }];
-    
+
     // random array from https://stackoverflow.com/questions/43267033/understanding-the-use-of-math-floor-when-randomly-accessing-an-array
     let cards = cardArray[Math.floor(Math.random() * cardArray.length)];
 
@@ -177,6 +177,7 @@ function checkResultPlayer2(a, b) {
  * alerts user when no more players can be added
  */
 function addPlayer() {
+
     let userDiv = document.getElementById("users-div");
     let html = `
         <div>
@@ -206,13 +207,19 @@ function addPlayer() {
  * alerts user when can't remove anymore players
  */
 function rmvPlayer() {
+
     let userDiv = document.getElementById("users-div");
     let scoresDiv = document.getElementById("scores-inner-div");
     let user2 = document.getElementById("user2-card");
 
     if (user2) {
-        userDiv.children[1].remove();
-        scoresDiv.children[2].remove();
+        let player2Score = parseInt(document.getElementById("player2-score").innerText);
+        if (player2Score != 0) {
+            alert("You must cash out before Removing player 2");
+        } else {
+            userDiv.children[1].remove();
+            scoresDiv.children[2].remove();
+        }
     } else {
         alert("You can't remove anymore players");
     };
