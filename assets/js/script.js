@@ -204,6 +204,7 @@ function addPlayer() {
 
 /**
  * removes player from the game board when click - button
+ * checks player 2 score before removing player
  * alerts user when can't remove anymore players
  */
 function rmvPlayer() {
@@ -371,6 +372,7 @@ function ifPlayer2Wins() {
 
 function cashOut() {
 
+    let oldFunds = parseInt(document.getElementById("player-funds").innerText);
     let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
     let oldPlayer1Score = parseInt(document.getElementById("player1-score").innerText);
     let oldCashOutTotal = parseInt(document.getElementById("cash-out-total").innerText);
@@ -378,19 +380,22 @@ function cashOut() {
 
     if (user2) {
         let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
-        let twoPlayerScore = oldPlayer1Score + oldPlayer2Score
+        let twoPlayerScore = oldPlayer1Score + oldPlayer2Score + oldFunds;
         if (oldPlayer1Score > 0 || oldPlayer2Score > 0) {
             document.getElementById("cash-out-total").innerText = oldCashOutTotal + twoPlayerScore;
             document.getElementById("computer-score").innerText = oldComputerScore - oldComputerScore;
             document.getElementById("player2-score").innerText = oldPlayer2Score - oldPlayer2Score;
             document.getElementById("player1-score").innerText = oldPlayer1Score - oldPlayer1Score;
+            document.getElementById("player-funds").innerText = oldFunds - oldFunds;
         } else {
             alert("Insufficient Funds");
         }
     } else if (oldPlayer1Score > 0) {
-        document.getElementById("cash-out-total").innerText = oldCashOutTotal + oldPlayer1Score;
+        let onePlayerScore = oldPlayer1Score + oldFunds;
+        document.getElementById("cash-out-total").innerText = oldCashOutTotal + onePlayerScore;
         document.getElementById("computer-score").innerText = oldComputerScore - oldComputerScore;
         document.getElementById("player1-score").innerText = oldPlayer1Score - oldPlayer1Score;
+        document.getElementById("player-funds").innerText = oldFunds - oldFunds;
     } else {
         alert("Insufficient Funds");
     }
