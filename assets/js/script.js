@@ -20,7 +20,7 @@ function refreshPage() {
     }
 
     let cards = document.getElementsByClassName("card");
-    
+
     for (card of cards) {
         this.innerText = " ";
     }
@@ -37,109 +37,136 @@ function refreshPage() {
     let active = document.getElementsByClassName("active");
     active[0].className = active[0].className.replace(" active", "");
     setStake5.className += " active";
-    
+
 }
 
 /**
- * gets two random numbers one for the computer and one for the user
- * pairs them up with a card index 
- * adds the numbers to the corresponding cards
+ * @returns a random card object from the cardArray
+ */
+function randomCard() {
+
+    let cardArray = [{
+        card: "2",
+        rank: 2
+    }, {
+        card: "3",
+        rank: 3
+    }, {
+        card: "4",
+        rank: 4
+    }, {
+        card: "5",
+        rank: 5
+    }, {
+        card: "6",
+        rank: 6
+    }, {
+        card: "7",
+        rank: 7
+    }, {
+        card: "8",
+        rank: 8
+    }, {
+        card: "9",
+        rank: 9
+    }, {
+        card: "10",
+        rank: 10
+    }, {
+        card: "J",
+        rank: 11
+    }, {
+        card: "Q",
+        rank: 12
+    }, {
+        card: "K",
+        rank: 13
+    }, {
+        card: "A",
+        rank: 14
+    }];
+    
+    // random array from https://stackoverflow.com/questions/43267033/understanding-the-use-of-math-floor-when-randomly-accessing-an-array
+    let cards = cardArray[Math.floor(Math.random() * cardArray.length)];
+
+    return cards;
+};
+
+/**
+ * gets two random objects from randomCard function one for the computer and one for each user 
+ * adds the object card string to the corresponding cards inner text
+ * takes both the of the ranks from the card object and comparse them with the 
+ * corresponding check results function
  */
 function runGame() {
 
-    let cardArray = [{"2" : 1}, {"3" : 2}, {"4" : 3}, {"5" : 4}, {"6" : 5}, {"7" : 6}, {"8" : 7}, {"9" : 8}, {"10" : 9}, {"J" : 10}, {"Q" : 11}, {"K" : 12}, {"A" : 13}];
+    let card1 = randomCard();
+    let card2 = randomCard();
 
-    const cardDeck = {
-        "2": 2,
-        "3": 3,
-        "4": 4,
-        "5": 5,
-        "6": 6,
-        "7": 7,
-        "8": 8,
-        "9": 9,
-        "10": 10,
-        "J": 11,
-        "Q": 12,
-        "K": 13,
-        "A": 14
-    }
+    let computerCard = document.getElementById("computers-card");
+    let user1Card = document.getElementById("user1-card");
 
-    var randomProperty = function (obj) {
-        var keys = cardArray.keys(obj);
-        return obj[keys[ keys.length * Math.random() << 0]];
-    };
-
-    console.log();
-
-
-    // random array from https://stackoverflow.com/questions/43267033/understanding-the-use-of-math-floor-when-randomly-accessing-an-array
-    // let num1 = cardArray[Math.floor(Math.random() * cardArray.length)];
-    // let num2 = cardArray[Math.floor(Math.random() * cardArray.length)];
-
-
-
-    // let computerCard = document.getElementById("computers-card");
-    // let user1Card = document.getElementById("user1-card");
-
-    // computerCard.innerText = num1;
-    // user1Card.innerText = num2;
+    computerCard.innerText = card1.card;
+    user1Card.innerText = card2.card;
 
     let user2 = document.getElementById("user2-card");
     if (user2) {
-        let num3 = cardArray[Math.floor(Math.random() * cardArray.length)];
-        user2.innerHTML = num3;
-        checkResultPlayer2(num1, num3);
+        let card3 = randomCard();
+        user2.innerHTML = card3.card;
+        checkResultPlayer2(card1.rank, card3.rank);
     };
 
-    // checkResultPlayer1(num1, num2);
+    checkResultPlayer1(card1.rank, card2.rank);
 }
 
 /**
- * gets the card numbers from runGame() for computer and player 1
- * then works out the higher card
- * and calls the correct function for winner
- * @param {computer} num1 
- * @param {player 1} num2 
+ * gets the card rank from the runGame function for computer and player 1
+ * then works out the higher rank
+ * and calls the correct function for the winner
+ * also sets the results within html
+ * @param {computer} a 
+ * @param {player 1} b
  */
-function checkResultPlayer1(num1, num2) {
+function checkResultPlayer1(a, b) {
 
     let player1Result = document.getElementById("player1-result");
 
     if (runGame)
-        if (num1 < num2) {
+        if (a < b) {
             ifPlayer1Wins();
             player1Result.innerText = "You Win!";
-        } else if (num1 === num2) {
-        player1Result.innerText = "It's a Draw!";
-    } else {
+        } else if (a > b) {
         ifComputerWins();
         player1Result.innerText = "You Lose!";
+    } else {
+        player1Result.innerText = "It's a Draw!";
     };
 
 }
 
 /**
- * gets the card numbers from runGame() for computer and player 2
- * then works out the higher card
- * and calls the correct function for winner
- * @param {computer} num1 
- * @param {player 2} num3 
+ * gets the card rank from the runGame function for computer and player 2
+ * then works out the higher rank
+ * and calls the correct function for the winner
+ * also sets the results within html
+ * @param {computer} a
+ * @param {player 2} b 
  */
-function checkResultPlayer2(num1, num3) {
+function checkResultPlayer2(a, b) {
+
     let player2Result = document.getElementById("player2-result");
 
     let user2 = document.getElementById("user2-card");
     if (user2) {
         if (runGame)
-            if (num1 < num3) {
+            if (a < b) {
                 ifPlayer2Wins();
                 player2Result.innerText = "You Win!";
-            } else if (num1 === num3) {
-            player2Result.innerText = "It's a Draw!";
-        } else {
+            } else if (a > b) {
             ifComputerWins();
             player2Result.innerText = "You Lose!";
+        } else {
+            player2Result.innerText = "It's a Draw!";
         };
     };
 
@@ -251,7 +278,11 @@ function checkFunds() {
             runGame();
         }
     } else {
-        if (active === 5 && funds < 5 || active === 10 && funds < 10 || active === 10 && funds < 20) {
+        if (active === 5 && funds < 5) {
+            alert("Please add funds");
+        } else if (active === 10 && funds < 10) {
+            alert("Please add funds");
+        } else if (active === 20 && funds < 20) {
             alert("Please add funds");
         } else {
             runGame();
