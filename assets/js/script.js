@@ -20,17 +20,17 @@ function refreshPage() {
         set.innerText = 0;
     }
 
-    let cards = document.getElementsByClassName("card");
+    let cardDeck = document.getElementsByClassName("cardDeck");
 
-    for (card of cards) {
-        this.innerText = " ";
+    for (decks of cardDeck) {
+        decks.innerText = "";
     }
 
-    document.getElementById("player1-result").innerText = " ";
+    document.getElementById("player1-result").innerText = "";
 
     let user2 = document.getElementById("user2-card");
     if (user2) {
-        document.getElementById("player2-result").innerText = " ";
+        document.getElementById("player2-result").innerText = "";
     }
 
     // sets stake to 5
@@ -186,7 +186,7 @@ function addPlayer() {
         <div>
             <p class="center">Player 2</p>
             <p id="player2-result" class="center"></p>
-            <div id="user2-card" class="card"></div>
+            <div id="user2-card" class="cardDeck"></div>
         </div>
     `;
     let scoresDiv = document.getElementById("scores-inner-div");

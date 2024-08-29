@@ -40,7 +40,7 @@ body {
     flex-wrap: wrap;
 }
 
-.card {
+.cardDeck {
     background-color: #fff;
     width: 5rem;
     height: 5.5rem;
