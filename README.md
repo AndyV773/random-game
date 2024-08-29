@@ -38,4 +38,7 @@ In the event of a draw, I intend to introduce a feature where players can choose
 - **Surrender:** The player loses the round, forfeiting their stake.
 - **Go to War:** The player must double their stake and play an additional round to determine the winner. 
 
+3. **Full set of Cards with Images**
+I would also like to implement a full deck of cards with visual representations for each card. This will enhance the user experience by making the game more visually appealing.
+
 This will make the game more fun and engaging.

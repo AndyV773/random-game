@@ -344,21 +344,13 @@ function checkFunds() {
     let user2 = document.getElementById("user2-card");
 
     if (user2) {
-        if (active === 5 && funds < 10) {
-            alert("Please add funds");
-        } else if (active === 10 && funds < 20) {
-            alert("Please add funds");
-        } else if (active === 20 && funds < 40) {
+        if (funds < 2 * active) {
             alert("Please add funds");
         } else {
             runGame();
         }
     } else {
-        if (active === 5 && funds < 5) {
-            alert("Please add funds");
-        } else if (active === 10 && funds < 10) {
-            alert("Please add funds");
-        } else if (active === 20 && funds < 20) {
+        if (funds < active) {
             alert("Please add funds");
         } else {
             runGame();
