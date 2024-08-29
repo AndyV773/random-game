@@ -9,8 +9,9 @@ body {
 
 #refresh {
     height: 50px;
+    width: 50px;
     float: right;
-    margin: 10px;
+    margin: 10px 10px 0 0;
     border-radius: 5px;
 }
 
