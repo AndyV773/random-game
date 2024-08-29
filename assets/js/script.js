@@ -319,6 +319,8 @@ function stakeValue() {
  */
 function addFunds() {
 
+    playButton.focus();
+
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
     let funds = document.getElementById("player-funds").innerText = oldFunds + 100;
     let max = 1000;
@@ -476,7 +478,7 @@ function cashOut() {
 }
 
 /**
- * disables buttons for extra security
+ * disables buttons for extra security and player experience
  */
 function buttonDisabled() {
 
@@ -524,6 +526,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     addFundsButton.addEventListener("click", addFunds);
     addFundsButton.addEventListener("click", buttonDisabled);
+    addFundsButton.focus();
 
     cashOutButton.addEventListener("click", cashOut);
     cashOutButton.addEventListener("click", buttonDisabled);
@@ -532,10 +535,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
         buttons.addEventListener("click", stakeValue);
     }
 
-    // document.getElementById("play-button").addEventListener("keydown", function (event) {
-    //     if (event.key === "Enter") {
-    //         checkFunds();
-    //     } 
-    // });
+    document.getElementById("play-button").addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            checkFunds();
+        } 
+    });
 
 });
