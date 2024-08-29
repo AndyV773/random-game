@@ -263,6 +263,9 @@ function addPlayer() {
     } else {
         userDiv.innerHTML += html;
         scoresDiv.innerHTML += scoresHtml;
+        stakeButtons[0].innerText = 10;
+        stakeButtons[1].innerText = 20;
+        stakeButtons[2].innerText = 40;
     };
 
 }
@@ -285,6 +288,9 @@ function rmvPlayer() {
         } else {
             userDiv.children[1].remove();
             scoresDiv.children[2].remove();
+            stakeButtons[0].innerText = 5;
+            stakeButtons[1].innerText = 10;
+            stakeButtons[2].innerText = 20;
         }
     } else {
         alert("You can't remove anymore players");
@@ -344,14 +350,14 @@ function checkFunds() {
     let user2 = document.getElementById("user2-card");
 
     if (user2) {
-        if (funds < 2 * active) {
-            alert("Please add funds");
+        if (funds < active) {
+            alert(`Please add funds. Minimum stake is set to ${active}.`);
         } else {
             runGame();
         }
     } else {
         if (funds < active) {
-            alert("Please add funds");
+            alert(`Please add funds. Minimum stake is set to ${active}`);
         } else {
             runGame();
         }
@@ -368,8 +374,12 @@ function ifComputerWins() {
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
     let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
+    let user2 = document.getElementById("user2-card");
 
-    if (active != undefined) {
+    if (user2) {
+        document.getElementById("computer-score").innerText = oldComputerScore + active;
+        document.getElementById("player-funds").innerText = oldFunds - active / 2;
+    } else if (user2 == undefined && active != undefined) {
         document.getElementById("computer-score").innerText = oldComputerScore + active * 2;
         document.getElementById("player-funds").innerText = oldFunds - active;
     } else {
@@ -387,8 +397,12 @@ function ifPlayer1Wins() {
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
     let oldPlayer1Score = parseInt(document.getElementById("player1-score").innerText);
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
+    let user2 = document.getElementById("user2-card");
 
-    if (active != undefined) {
+    if (user2) {
+        document.getElementById("player1-score").innerText = oldPlayer1Score + active;
+        document.getElementById("player-funds").innerText = oldFunds - active / 2;
+    } else if (user2 == undefined && active != undefined) {
         document.getElementById("player1-score").innerText = oldPlayer1Score + active * 2;
         document.getElementById("player-funds").innerText = oldFunds - active;
     } else {
@@ -409,10 +423,10 @@ function ifPlayer2Wins() {
         let active = parseInt(document.getElementsByClassName("active")[0].innerText);
         let oldFunds = parseInt(document.getElementById("player-funds").innerText);
         let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
-        
+
         if (active != undefined) {
-            document.getElementById("player2-score").innerText = oldPlayer2Score + active * 2;
-            document.getElementById("player-funds").innerText = oldFunds - active;
+            document.getElementById("player2-score").innerText = oldPlayer2Score + active;
+            document.getElementById("player-funds").innerText = oldFunds - active / 2;
         } else {
             alert("Stake undefined");
         }
@@ -463,16 +477,19 @@ function cashOut() {
  */
 function buttonDisabled() {
 
+    // funds and play button disable
     let funds = parseInt(document.getElementById("player-funds").innerText);
     let max = 1000;
 
     funds != 0 ? playButton.disabled = false : playButton.disabled = true;
     funds == max || funds > 900 ? addFundsButton.disabled = true : addFundsButton.disabled = false;
 
+    // add player and remove player button disable
     let user2 = document.getElementById("user2-card");
 
     user2 ? (rmvButton.disabled = false, addButton.disabled = true) : (rmvButton.disabled = true, addButton.disabled = false);
 
+    // cash out button disable
     let oldPlayer1Score = parseInt(document.getElementById("player1-score").innerText);
 
     if (user2) {
