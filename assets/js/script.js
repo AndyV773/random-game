@@ -42,9 +42,70 @@ function refreshPage() {
 }
 
 /**
+ * this card array is here to give the computer better odds of winning
+ * just change card1 variable in runGame to computerRandomCard
  * @returns a random card object from the cardArray
  */
-function randomCard() {
+function computerRandomCard() {
+
+    let cardArray = [{
+        card: "2",
+        rank: 2
+    }, {
+        card: "3",
+        rank: 3
+    }, {
+        card: "4",
+        rank: 4
+    }, {
+        card: "5",
+        rank: 5
+    }, {
+        card: "6",
+        rank: 6
+    }, {
+        card: "7",
+        rank: 7
+    }, {
+        card: "8",
+        rank: 8
+    }, {
+        card: "9",
+        rank: 9
+    }, {
+        card: "9",
+        rank: 9
+    }, {
+        card: "10",
+        rank: 10
+    }, {
+        card: "J",
+        rank: 11
+    }, {
+        card: "Q",
+        rank: 12
+    }, {
+        card: "K",
+        rank: 13
+    }, {
+        card: "K",
+        rank: 13
+    }, {
+        card: "A",
+        rank: 14
+    }];
+
+    // random array from https://stackoverflow.com/questions/43267033/understanding-the-use-of-math-floor-when-randomly-accessing-an-array
+    let cards = cardArray[Math.floor(Math.random() * cardArray.length)];
+
+    return cards;
+
+};
+
+/**
+ * @returns a random card object from the cardArray
+ */
+function playerRandomCard() {
 
     let cardArray = [{
         card: "2",
@@ -102,8 +163,9 @@ function randomCard() {
  */
 function runGame() {
 
-    let card1 = randomCard();
-    let card2 = randomCard();
+    // change card1 variable value to computerRandomCard() to increase the odds for the dealer 
+    let card1 = playerRandomCard();
+    let card2 = playerRandomCard();
 
     let computerCard = document.getElementById("computers-card");
     let user1Card = document.getElementById("user1-card");
@@ -113,7 +175,7 @@ function runGame() {
 
     let user2 = document.getElementById("user2-card");
     if (user2) {
-        let card3 = randomCard();
+        let card3 = playerRandomCard();
         user2.innerHTML = card3.card;
         checkResultPlayer2(card1.rank, card3.rank);
     };
@@ -247,7 +309,7 @@ function stakeValue() {
         currentActive = parseInt(document.getElementsByClassName("active")[0].innerText);
         alert(`Stake set to ${currentActive}`);
     } else {
-        alert(`Error current stake is Unkown`);
+        alert("Error current stake is Unkown");
     }
 
 }
@@ -261,7 +323,7 @@ function addFunds() {
     let funds = document.getElementById("player-funds").innerText = oldFunds + 100;
     let max = 1000;
 
-    if (funds == max) {
+    if (funds > max) {
         alert("Sorry you can't add anymore funds");
     }
 
@@ -437,13 +499,13 @@ function buttonDisabled() {
             cashOutButton.disabled = false;
         } else {
             cashOutButton.disabled = true;
-        } 
+        }
     } else if (oldPlayer1Score > 0) {
         cashOutButton.disabled = false;
     } else {
         cashOutButton.disabled = true;
     }
-    
+
 }
 
 // get the button elements and add event listeners to them
