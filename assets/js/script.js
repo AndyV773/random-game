@@ -369,15 +369,11 @@ function ifComputerWins() {
     let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
 
-    if (active === 20) {
-        document.getElementById("computer-score").innerText = oldComputerScore + 40;
-        document.getElementById("player-funds").innerText = oldFunds - 20;
-    } else if (active === 10) {
-        document.getElementById("computer-score").innerText = oldComputerScore + 20;
-        document.getElementById("player-funds").innerText = oldFunds - 10;
+    if (active != undefined) {
+        document.getElementById("computer-score").innerText = oldComputerScore + active * 2;
+        document.getElementById("player-funds").innerText = oldFunds - active;
     } else {
-        document.getElementById("computer-score").innerText = oldComputerScore + 10;
-        document.getElementById("player-funds").innerText = oldFunds - 5;
+        alert("Stake undefined");
     }
 
 }
@@ -392,15 +388,11 @@ function ifPlayer1Wins() {
     let oldPlayer1Score = parseInt(document.getElementById("player1-score").innerText);
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
 
-    if (active === 20) {
-        document.getElementById("player1-score").innerText = oldPlayer1Score + 40;
-        document.getElementById("player-funds").innerText = oldFunds - 20;
-    } else if (active === 10) {
-        document.getElementById("player1-score").innerText = oldPlayer1Score + 20;
-        document.getElementById("player-funds").innerText = oldFunds - 10;
+    if (active != undefined) {
+        document.getElementById("player1-score").innerText = oldPlayer1Score + active * 2;
+        document.getElementById("player-funds").innerText = oldFunds - active;
     } else {
-        document.getElementById("player1-score").innerText = oldPlayer1Score + 10;
-        document.getElementById("player-funds").innerText = oldFunds - 5;
+        alert("Stake undefined");
     }
 
 }
@@ -411,21 +403,18 @@ function ifPlayer1Wins() {
  */
 function ifPlayer2Wins() {
 
-    let active = parseInt(document.getElementsByClassName("active")[0].innerText);
-    let oldFunds = parseInt(document.getElementById("player-funds").innerText);
     let user2 = document.getElementById("user2-card");
 
     if (user2) {
+        let active = parseInt(document.getElementsByClassName("active")[0].innerText);
+        let oldFunds = parseInt(document.getElementById("player-funds").innerText);
         let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
-        if (active === 20) {
-            document.getElementById("player2-score").innerText = oldPlayer2Score + 40;
-            document.getElementById("player-funds").innerText = oldFunds - 20;
-        } else if (active === 10) {
-            document.getElementById("player2-score").innerText = oldPlayer2Score + 20;
-            document.getElementById("player-funds").innerText = oldFunds - 10;
+        
+        if (active != undefined) {
+            document.getElementById("player2-score").innerText = oldPlayer2Score + active * 2;
+            document.getElementById("player-funds").innerText = oldFunds - active;
         } else {
-            document.getElementById("player2-score").innerText = oldPlayer2Score + 10;
-            document.getElementById("player-funds").innerText = oldFunds - 5;
+            alert("Stake undefined");
         }
     };
 
@@ -530,7 +519,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     document.getElementById("play-button").addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
             checkFunds();
-        } 
+        }
     });
 
 });
