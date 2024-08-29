@@ -13,7 +13,7 @@ const cashOutButton = document.getElementById("cash-out");
  * other then the amount of players this resets everything back to factory settings
  */
 function refreshPage() {
-    
+
     let reset = document.getElementsByClassName("reset");
 
     for (set of reset) {
@@ -261,7 +261,7 @@ function addFunds() {
     let funds = document.getElementById("player-funds").innerText = oldFunds + 100;
     let max = 1000;
 
-    if (funds > max) {
+    if (funds == max) {
         alert("Sorry you can't add anymore funds");
     }
 
@@ -413,18 +413,67 @@ function cashOut() {
 
 }
 
+/**
+ * disables buttons for extra security
+ */
+function buttonDisabled() {
+
+    let funds = parseInt(document.getElementById("player-funds").innerText);
+    let max = 1000;
+
+    funds != 0 ? playButton.disabled = false : playButton.disabled = true;
+    funds == max || funds > 900 ? addFundsButton.disabled = true : addFundsButton.disabled = false;
+
+    let user2 = document.getElementById("user2-card");
+
+    user2 ? (rmvButton.disabled = false, addButton.disabled = true) : (rmvButton.disabled = true, addButton.disabled = false);
+
+    let oldPlayer1Score = parseInt(document.getElementById("player1-score").innerText);
+
+    if (user2) {
+        let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
+
+        if (oldPlayer1Score > 0 || oldPlayer2Score > 0) {
+            cashOutButton.disabled = false;
+        } else {
+            cashOutButton.disabled = true;
+        } 
+    } else if (oldPlayer1Score > 0) {
+        cashOutButton.disabled = false;
+    } else {
+        cashOutButton.disabled = true;
+    }
+    
+}
+
 // get the button elements and add event listeners to them
 window.addEventListener("DOMContentLoaded", (event) => {
 
     refreshButton.addEventListener("click", refreshPage);
+
     rmvButton.addEventListener("click", rmvPlayer);
+    rmvButton.addEventListener("click", buttonDisabled);
+
     addButton.addEventListener("click", addPlayer);
+    addButton.addEventListener("click", buttonDisabled);
+
     playButton.addEventListener("click", checkFunds);
+    playButton.addEventListener("click", buttonDisabled);
+
     addFundsButton.addEventListener("click", addFunds);
+    addFundsButton.addEventListener("click", buttonDisabled);
+
     cashOutButton.addEventListener("click", cashOut);
+    cashOutButton.addEventListener("click", buttonDisabled);
 
     for (buttons of stakeButtons) {
         buttons.addEventListener("click", stakeValue);
     }
+
+    // document.getElementById("play-button").addEventListener("keydown", function (event) {
+    //     if (event.key === "Enter") {
+    //         checkFunds();
+    //     } 
+    // });
 
 });
