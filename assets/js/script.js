@@ -42,70 +42,10 @@ function refreshPage() {
 }
 
 /**
- * this card array is here to give the computer better odds of winning
- * just change card1 variable in runGame to computerRandomCard
- * @returns a random card object from the cardArray
+ * @param {1 or 2} a 
+ * @returns random card object
  */
-function computerRandomCard() {
-
-    let cardArray = [{
-        card: "2",
-        rank: 2
-    }, {
-        card: "3",
-        rank: 3
-    }, {
-        card: "4",
-        rank: 4
-    }, {
-        card: "5",
-        rank: 5
-    }, {
-        card: "6",
-        rank: 6
-    }, {
-        card: "7",
-        rank: 7
-    }, {
-        card: "8",
-        rank: 8
-    }, {
-        card: "9",
-        rank: 9
-    }, {
-        card: "9",
-        rank: 9
-    }, {
-        card: "10",
-        rank: 10
-    }, {
-        card: "J",
-        rank: 11
-    }, {
-        card: "Q",
-        rank: 12
-    }, {
-        card: "K",
-        rank: 13
-    }, {
-        card: "K",
-        rank: 13
-    }, {
-        card: "A",
-        rank: 14
-    }];
-
-    // random array from https://stackoverflow.com/questions/43267033/understanding-the-use-of-math-floor-when-randomly-accessing-an-array
-    let cards = cardArray[Math.floor(Math.random() * cardArray.length)];
-
-    return cards;
-
-};
-
-/**
- * @returns a random card object from the cardArray
- */
-function playerRandomCard() {
+function randomCard(a) {
 
     let cardArray = [{
         card: "2",
@@ -147,6 +87,17 @@ function playerRandomCard() {
         card: "A",
         rank: 14
     }];
+
+    let extraCards = [{
+        card: "9",
+        rank: 9
+    }, {
+        card: "Q",
+        rank: 12
+    }];
+
+    // push array of objects in to another (...) https://stackoverflow.com/questions/64797162/push-an-array-into-the-same-array-javascript
+    a == 2 ? cardArray.push(...extraCards) : a = 1;
 
     // random array from https://stackoverflow.com/questions/43267033/understanding-the-use-of-math-floor-when-randomly-accessing-an-array
     let cards = cardArray[Math.floor(Math.random() * cardArray.length)];
@@ -163,9 +114,9 @@ function playerRandomCard() {
  */
 function runGame() {
 
-    // change card1 variable value to computerRandomCard() to increase the odds for the dealer 
-    let card1 = playerRandomCard();
-    let card2 = playerRandomCard();
+    // change the argument for card1 from 1 to 2, to increase the odds for the dealer 
+    let card1 = randomCard(1);
+    let card2 = randomCard(1);
 
     let computerCard = document.getElementById("computers-card");
     let user1Card = document.getElementById("user1-card");
@@ -175,7 +126,7 @@ function runGame() {
 
     let user2 = document.getElementById("user2-card");
     if (user2) {
-        let card3 = playerRandomCard();
+        let card3 = randomCard(1);
         user2.innerHTML = card3.card;
         checkResults(card1.rank, card3.rank, 2);
     };
