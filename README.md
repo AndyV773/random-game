@@ -1,5 +1,9 @@
 # Love Gambling
 
+**Love Gambling** is a casino war-style game where users face off against the computer/dealer. Players can add funds, choose their stake, add multiple players, and cash out when they're done. At the end of the game, you'll see your initial investment compared to your final total to assess your performance. The game features a simple, responsive design that works seamlessly without media queries. The odds can be adjusted in the code to favor the computer slightly. I alse kept the global variables to a minimum, using only "const" for button variables globally. Although this approach introduced some repetition, it helped keep the code relatively tidy and organized.
+
+**The deployed website can be found here:** [Love Gambling](https://andyv773.github.io/random-game/)
+
 **Responsive Design:**
 
 ![Screenshot of love gambling on i am responsive website](assets/images/responsive.png)
@@ -16,8 +20,6 @@ My aim is to create a simple random card-style game where the user is up against
 The result is simple: the highest card ranking will win, with 2 being the lowest and A (Ace) being the highest. The computer will calculate the winner and add the funds to either the player's score or the computer's score. It is a game of complete chance based on a random number generator.
 
 The user will also be able to add up to a maximum of 3 players. Each player is up against the computer, and their scores will be listed separately on the board. When the player decides to cash out, the total score will be added to the funds.
-
-I kept the global variables to a minimum, using only "const" for button variables globally. Although this approach introduced some repetition, it helped keep the code relatively tidy and organized.
 
 ## WireFrame
 
