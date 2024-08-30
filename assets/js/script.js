@@ -198,7 +198,7 @@ function checkResultPlayer1(a, b) {
 
     if (runGame)
         if (a < b) {
-            ifPlayer1Wins();
+            ifPlayerWins(1);
             player1Result.innerText = "You Win!";
         } else if (a > b) {
         ifComputerWins();
@@ -225,7 +225,7 @@ function checkResultPlayer2(a, b) {
     if (user2) {
         if (runGame)
             if (a < b) {
-                ifPlayer2Wins();
+                ifPlayerWins(2);
                 player2Result.innerText = "You Win!";
             } else if (a > b) {
             ifComputerWins();
@@ -389,48 +389,25 @@ function ifComputerWins() {
 }
 
 /**
- * if player one wins will remove the selected stake amount from funds
- * and add to player one's score
+ * takes the argument of the players number and works out the scores
+ * @param {*} num 
  */
-function ifPlayer1Wins() {
+function ifPlayerWins(num) {
 
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
-    let oldPlayer1Score = parseInt(document.getElementById("player1-score").innerText);
+    let oldPlayerScore = parseInt(document.getElementById(`player${num}-score`).innerText);
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
     let user2 = document.getElementById("user2-card");
 
     if (user2) {
-        document.getElementById("player1-score").innerText = oldPlayer1Score + active;
+        document.getElementById(`player${num}-score`).innerText = oldPlayerScore + active;
         document.getElementById("player-funds").innerText = oldFunds - active / 2;
     } else if (user2 == undefined && active != undefined) {
-        document.getElementById("player1-score").innerText = oldPlayer1Score + active * 2;
+        document.getElementById(`player${num}-score`).innerText = oldPlayerScore + active * 2;
         document.getElementById("player-funds").innerText = oldFunds - active;
     } else {
         alert("Stake undefined");
     }
-
-}
-
-/**
- * if player two wins will remove the selected stake amount from funds
- * and add to player two's score
- */
-function ifPlayer2Wins() {
-
-    let user2 = document.getElementById("user2-card");
-
-    if (user2) {
-        let active = parseInt(document.getElementsByClassName("active")[0].innerText);
-        let oldFunds = parseInt(document.getElementById("player-funds").innerText);
-        let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
-
-        if (active != undefined) {
-            document.getElementById("player2-score").innerText = oldPlayer2Score + active;
-            document.getElementById("player-funds").innerText = oldFunds - active / 2;
-        } else {
-            alert("Stake undefined");
-        }
-    };
 
 }
 
