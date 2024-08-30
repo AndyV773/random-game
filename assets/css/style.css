@@ -45,7 +45,7 @@ body {
     background-color: #fff;
     width: 5rem;
     height: 5.5rem;
-    margin-bottom: 10px;
+    margin: 0 10px 10px 10px;
     border-radius: 5px;
     font-size: 3rem;
     font-weight: bold;
@@ -87,18 +87,6 @@ body {
     align-self: flex-end;
     flex-wrap: wrap;
     padding-bottom: 5px;
-}
-
-#user1-card {
-    order: 0;
-}
-
-#user2-card {
-    order: 1;
-}
-
-#user3-card {
-    order: 2;
 }
 
 /* button area */

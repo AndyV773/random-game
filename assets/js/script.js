@@ -26,11 +26,9 @@ function refreshPage() {
         decks.innerText = "";
     }
 
-    document.getElementById("player1-result").innerText = "";
-
-    let user2 = document.getElementById("user2-card");
-    if (user2) {
-        document.getElementById("player2-result").innerText = "";
+    let playerReset = document.getElementsByClassName("player-reset");
+    for (players of playerReset) {
+        players.children[1].innerText = "";
     }
 
     // sets stake to 5
@@ -115,23 +113,30 @@ function randomCard(a) {
 function runGame() {
 
     // change the argument for card1 from 1 to 2, to increase the odds for the dealer 
+    let card0 = randomCard(1);
     let card1 = randomCard(1);
-    let card2 = randomCard(1);
 
     let computerCard = document.getElementById("computers-card");
     let user1Card = document.getElementById("user1-card");
 
-    computerCard.innerText = card1.card;
-    user1Card.innerText = card2.card;
+    computerCard.innerText = card0.card;
+    user1Card.innerText = card1.card;
 
     let user2 = document.getElementById("user2-card");
     if (user2) {
-        let card3 = randomCard(1);
-        user2.innerHTML = card3.card;
-        checkResults(card1.rank, card3.rank, 2);
+        let card2 = randomCard(1);
+        user2.innerHTML = card2.card;
+        checkResults(card0.rank, card2.rank, 2);
     };
 
-    checkResults(card1.rank, card2.rank, 1);
+    let user3 = document.getElementById("user3-card");
+    if (user3) {
+        let card3 = randomCard(1);
+        user3.innerHTML = card3.card;
+        checkResults(card0.rank, card3.rank, 3);
+    };
+
+    checkResults(card0.rank, card1.rank, 1);
 
 }
 
@@ -162,31 +167,49 @@ function checkResults(a, b, num) {
 }
 
 /**
- * adds player to game board when click + button
- * alerts user when no more players can be added
+ * creates html element for extra player and adds it to the docs
+ * @param {new player number} num 
  */
-function addPlayer() {
+function extraPlayer(num) {
 
     let userDiv = document.getElementById("users-div");
     let html = `
-        <div>
-            <p class="center">Player 2</p>
-            <p id="player2-result" class="center"></p>
-            <div id="user2-card" class="cardDeck"></div>
+        <div class="player-reset">
+            <p class="center">Player ${num}</p>
+            <p id="player${num}-result" class="center"></p>
+            <div id="user${num}-card" class="cardDeck"></div>
         </div>
     `;
     let scoresDiv = document.getElementById("scores-inner-div");
     let scoresHtml = `
-        <p>Player 2 Score: <span id="player2-score" class="reset">0</span></p>
+        <p>Player ${num} Score: <span id="player${num}-score" class="reset">0</span></p>
     `;
 
+    userDiv.innerHTML += html;
+    scoresDiv.innerHTML += scoresHtml;
+
+}
+
+/**
+ * checks how many players there are and then calls the correct function
+ * adjusts the stake values
+ */
+function addPlayer() {
+
     let user2 = document.getElementById("user2-card");
+    let user3 = document.getElementById("user3-card");
 
     if (user2) {
-        alert("Sorry you can't add anymore players");
+        if (user2 != undefined && user3 == undefined) {
+            extraPlayer(3)
+            stakeButtons[0].innerText = 15;
+            stakeButtons[1].innerText = 30;
+            stakeButtons[2].innerText = 60;
+        } else {
+            alert("You can't add anymore players");
+        }
     } else {
-        userDiv.innerHTML += html;
-        scoresDiv.innerHTML += scoresHtml;
+        extraPlayer(2)
         stakeButtons[0].innerText = 10;
         stakeButtons[1].innerText = 20;
         stakeButtons[2].innerText = 40;
@@ -195,26 +218,51 @@ function addPlayer() {
 }
 
 /**
- * removes player from the game board when click - button
- * checks player 2 score before removing player
- * alerts user when can't remove anymore players
+ * checks if players score is equal to 0
+ * @param {player number} num 
+ * @returns true or false
+ */
+function checkScore(num) {
+
+    let playerScore = parseInt(document.getElementById(`player${num}-score`).innerText);
+
+    if (playerScore == 0) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+/**
+ * removes player if checkScore() is equal to true
  */
 function rmvPlayer() {
 
     let userDiv = document.getElementById("users-div");
     let scoresDiv = document.getElementById("scores-inner-div");
     let user2 = document.getElementById("user2-card");
+    let user3 = document.getElementById("user3-card");
 
     if (user2) {
-        let player2Score = parseInt(document.getElementById("player2-score").innerText);
-        if (player2Score != 0) {
-            alert("You must cash out before Removing player 2");
-        } else {
+        if (user2 && user3) {
+            if (checkScore(2) && checkScore(3)) {
+                userDiv.children[2].remove();
+                scoresDiv.children[3].remove();
+                stakeButtons[0].innerText = 10;
+                stakeButtons[1].innerText = 20;
+                stakeButtons[2].innerText = 40;
+            } else {
+                alert("You must cash out before Removing players");
+            }
+        } else if (user2 && checkScore(2)) {
             userDiv.children[1].remove();
             scoresDiv.children[2].remove();
             stakeButtons[0].innerText = 5;
             stakeButtons[1].innerText = 10;
             stakeButtons[2].innerText = 20;
+        } else {
+            alert("You must cash out before Removing players");
         }
     } else {
         alert("You can't remove anymore players");
@@ -245,7 +293,7 @@ function stakeValue() {
 }
 
 /**
- * add funds to the game in increments of 5
+ * add funds to the game
  */
 function addFunds() {
 
@@ -265,26 +313,18 @@ function addFunds() {
 }
 
 /**
- * checks if the players has enough funds before runing the game
+ * checks if funds are less then stake
+ * calls runGame function if false
  */
 function checkFunds() {
 
     let funds = parseInt(document.getElementById("player-funds").innerText);
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
-    let user2 = document.getElementById("user2-card");
 
-    if (user2) {
-        if (funds < active) {
-            alert(`Please add funds. Minimum stake is set to ${active}.`);
-        } else {
-            runGame();
-        }
+    if (funds < active) {
+        alert(`Please add funds, minimum stake is set to ${active}.`);
     } else {
-        if (funds < active) {
-            alert(`Please add funds. Minimum stake is set to ${active}`);
-        } else {
-            runGame();
-        }
+        runGame();
     }
 
 }
@@ -299,15 +339,17 @@ function ifComputerWins() {
     let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
     let user2 = document.getElementById("user2-card");
+    let user3 = document.getElementById("user3-card");
 
-    if (user2) {
+    if (user3) {
+        document.getElementById("computer-score").innerText = oldComputerScore + active / 3 * 2;
+        document.getElementById("player-funds").innerText = oldFunds - active / 3;
+    } else if (user2) {
         document.getElementById("computer-score").innerText = oldComputerScore + active;
         document.getElementById("player-funds").innerText = oldFunds - active / 2;
-    } else if (user2 == undefined && active != undefined) {
+    } else {
         document.getElementById("computer-score").innerText = oldComputerScore + active * 2;
         document.getElementById("player-funds").innerText = oldFunds - active;
-    } else {
-        alert("Stake undefined");
     }
 
 }
@@ -322,17 +364,18 @@ function ifPlayerWins(num) {
     let oldPlayerScore = parseInt(document.getElementById(`player${num}-score`).innerText);
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
     let user2 = document.getElementById("user2-card");
+    let user3 = document.getElementById("user3-card");
 
-    if (user2) {
+    if (user3) {
+        document.getElementById(`player${num}-score`).innerText = oldPlayerScore + active / 3 * 2;
+        document.getElementById("player-funds").innerText = oldFunds - active / 3;
+    } else if (user2) {
         document.getElementById(`player${num}-score`).innerText = oldPlayerScore + active;
         document.getElementById("player-funds").innerText = oldFunds - active / 2;
-    } else if (user2 == undefined && active != undefined) {
+    } else {
         document.getElementById(`player${num}-score`).innerText = oldPlayerScore + active * 2;
         document.getElementById("player-funds").innerText = oldFunds - active;
-    } else {
-        alert("Stake undefined");
     }
-
 }
 
 /**
@@ -346,8 +389,24 @@ function cashOut() {
     let oldPlayer1Score = parseInt(document.getElementById("player1-score").innerText);
     let oldCashOutTotal = parseInt(document.getElementById("cash-out-total").innerText);
     let user2 = document.getElementById("user2-card");
+    let user3 = document.getElementById("user3-card");
 
-    if (user2) {
+    if (user3) {
+        let oldPlayer3Score = parseInt(document.getElementById("player3-score").innerText);
+        let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
+        let threePlayerScore = oldPlayer1Score + oldPlayer2Score + oldPlayer3Score + oldFunds;
+
+        if (oldPlayer1Score > 0 || oldPlayer2Score > 0 || oldPlayer3Score > 0) {
+            document.getElementById("cash-out-total").innerText = oldCashOutTotal + threePlayerScore;
+            document.getElementById("computer-score").innerText = oldComputerScore - oldComputerScore;
+            document.getElementById("player3-score").innerText = oldPlayer3Score - oldPlayer3Score;
+            document.getElementById("player2-score").innerText = oldPlayer2Score - oldPlayer2Score;
+            document.getElementById("player1-score").innerText = oldPlayer1Score - oldPlayer1Score;
+            document.getElementById("player-funds").innerText = oldFunds - oldFunds;
+        } else {
+            alert("Insufficient Funds");
+        }
+    } else if (user2) {
         let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
         let twoPlayerScore = oldPlayer1Score + oldPlayer2Score + oldFunds;
 
@@ -385,15 +444,34 @@ function buttonDisabled() {
     funds != 0 ? playButton.disabled = false : playButton.disabled = true;
     funds == max || funds > 900 ? addFundsButton.disabled = true : addFundsButton.disabled = false;
 
-    // add player and remove player button disable
+    // add player button and remove player button disable
     let user2 = document.getElementById("user2-card");
+    let user3 = document.getElementById("user3-card");
 
-    user2 ? (rmvButton.disabled = false, addButton.disabled = true) : (rmvButton.disabled = true, addButton.disabled = false);
+    if (user3) {
+        rmvButton.disabled = false;
+        addButton.disabled = true;
+    } else if (user2 && user3 == undefined) {
+        rmvButton.disabled = false;
+        addButton.disabled = false;
+    } else {
+        rmvButton.disabled = true;
+        addButton.disabled = false;
+    }
 
     // cash out button disable
     let oldPlayer1Score = parseInt(document.getElementById("player1-score").innerText);
 
-    if (user2) {
+    if (user3) {
+        let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
+        let oldPlayer3Score = parseInt(document.getElementById("player3-score").innerText);
+
+        if (oldPlayer1Score > 0 || oldPlayer2Score > 0 || oldPlayer3Score > 0) {
+            cashOutButton.disabled = false;
+        } else {
+            cashOutButton.disabled = true;
+        }
+    } else if (user2) {
         let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
 
         if (oldPlayer1Score > 0 || oldPlayer2Score > 0) {
@@ -413,22 +491,18 @@ function buttonDisabled() {
 window.addEventListener("DOMContentLoaded", (event) => {
 
     refreshButton.addEventListener("click", refreshPage);
-
     rmvButton.addEventListener("click", rmvPlayer);
-    rmvButton.addEventListener("click", buttonDisabled);
-
     addButton.addEventListener("click", addPlayer);
-    addButton.addEventListener("click", buttonDisabled);
-
     playButton.addEventListener("click", checkFunds);
-    playButton.addEventListener("click", buttonDisabled);
-
     addFundsButton.addEventListener("click", addFunds);
-    addFundsButton.addEventListener("click", buttonDisabled);
+
     addFundsButton.focus();
 
     cashOutButton.addEventListener("click", cashOut);
-    cashOutButton.addEventListener("click", buttonDisabled);
+
+    for (buttons of document.getElementsByTagName("button")) {
+        buttons.addEventListener("click", buttonDisabled);
+    }
 
     for (buttons of stakeButtons) {
         buttons.addEventListener("click", stakeValue);
