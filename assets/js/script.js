@@ -177,62 +177,35 @@ function runGame() {
     if (user2) {
         let card3 = playerRandomCard();
         user2.innerHTML = card3.card;
-        checkResultPlayer2(card1.rank, card3.rank);
+        checkResults(card1.rank, card3.rank, 2);
     };
 
-    checkResultPlayer1(card1.rank, card2.rank);
+    checkResults(card1.rank, card2.rank, 1);
 
 }
 
 /**
- * gets the card rank from the runGame function for computer and player 1
- * then works out the higher rank
- * and calls the correct function for the winner
+ * takes both the arguments of comupters and players card 
+ * then takes the argument of the players number
+ * works out the higher rank and calls the correct function for the winner
  * also sets the results within html
- * @param {computer} a 
- * @param {player 1} b
+ * @param {computers card} a 
+ * @param {players card} b 
+ * @param {players number} num 
  */
-function checkResultPlayer1(a, b) {
+function checkResults(a, b, num) {
 
-    let player1Result = document.getElementById("player1-result");
+    let playerResult = document.getElementById(`player${num}-result`);
 
     if (runGame)
         if (a < b) {
-            ifPlayerWins(1);
-            player1Result.innerText = "You Win!";
+            ifPlayerWins(num);
+            playerResult.innerText = "You Win!";
         } else if (a > b) {
         ifComputerWins();
-        player1Result.innerText = "You Lose!";
+        playerResult.innerText = "You Lose!";
     } else {
-        player1Result.innerText = "It's a Draw!";
-    };
-
-}
-
-/**
- * gets the card rank from the runGame function for computer and player 2
- * then works out the higher rank
- * and calls the correct function for the winner
- * also sets the results within html
- * @param {computer} a
- * @param {player 2} b 
- */
-function checkResultPlayer2(a, b) {
-
-    let player2Result = document.getElementById("player2-result");
-
-    let user2 = document.getElementById("user2-card");
-    if (user2) {
-        if (runGame)
-            if (a < b) {
-                ifPlayerWins(2);
-                player2Result.innerText = "You Win!";
-            } else if (a > b) {
-            ifComputerWins();
-            player2Result.innerText = "You Lose!";
-        } else {
-            player2Result.innerText = "It's a Draw!";
-        };
+        playerResult.innerText = "It's a Draw!";
     };
 
 }
@@ -390,7 +363,7 @@ function ifComputerWins() {
 
 /**
  * takes the argument of the players number and works out the scores
- * @param {*} num 
+ * @param {players number} num 
  */
 function ifPlayerWins(num) {
 
