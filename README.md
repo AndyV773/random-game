@@ -30,15 +30,15 @@ The user will also be able to add up to a maximum of 3 players. Each player is u
 
 With more time, I would like to add the following features to the game:
 
-1. **Additional Players:**
-I plan to expand the game allowing for more players, making it more engaging.
-
-2. **Draw Scenario:**
+1. **Draw Scenario:**
 In the event of a draw, I intend to introduce a feature where players can choose to either:
 - **Surrender:** The player loses the round, forfeiting their stake.
 - **Go to War:** The player must double their stake and play an additional round to determine the winner. 
 
-3. **Full set of Cards with Images**
-I would also like to implement a full deck of cards with visual representations for each card. This will enhance the user experience by making the game more visually appealing.
+2. **Full set of Cards with Images:**
+I would like to implement a full deck of cards with visual representations for each card. This will enhance the user experience by making the game more visually appealing.
+
+3. **Card Animation:**
+I would also like to implement a time-delayed animation. When bets are placed, the cards will go through an animation for a few seconds before revealing the final selection.
 
 This will make the game more fun and engaging.
