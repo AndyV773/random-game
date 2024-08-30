@@ -68,4 +68,12 @@ This will make the game more fun and engaging.
 
 ### Content
 
+- I used the [Love Maths](https://github.com/Code-Institute-Solutions/readme-love-maths) from Code Institue as a refernce
+- The icons used were taken from [Font Awesome](https://fontawesome.com/)
+- To help with the JavaScript and choose colours, I used [W3S](https://www.w3schools.com/)
+- I also use [Stake Over Flow](https://stackoverflow.com/) to help with the JavaScipt
+
 ### Media
+
+- The Favicon icon was generated using [Ionos](https://www.ionos.co.uk/tools/favicon-generator)
+- The Logo images was take from [Adobe](https://stock.adobe.com/search/images?k=playing+card+logo&asset_id=96484510)
