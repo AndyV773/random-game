@@ -26,6 +26,7 @@ function resetPage() {
         decks.innerText = "";
     }
 
+    // i could have added player-reset to the P element but decided to do it like this 
     let playerReset = document.getElementsByClassName("player-reset");
     for (players of playerReset) {
         players.children[1].innerText = "";
@@ -378,6 +379,47 @@ function ifPlayerWins(num) {
     }
 }
 
+function checkAmountOfPlayers() {
+    let user2 = document.getElementById("user2-card");
+    let user3 = document.getElementById("user3-card");
+
+    if (user3) {
+        return 3;
+    } else if (user2) {
+        return 2;
+    } else {
+        return 1;
+    }
+}
+
+function cashOutPlayer(num) {
+
+    let oldFunds = parseInt(document.getElementById("player-funds").innerText);
+    let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
+    let oldCashOutTotal = parseInt(document.getElementById("cash-out-total").innerText);
+    let oldPlayerScore = parseInt(document.getElementById(`player${num}-score`).innerText);
+
+    document.getElementById("cash-out-total").innerText = oldCashOutTotal + oldPlayerScore + oldFunds;
+    document.getElementById("computer-score").innerText = oldComputerScore - oldComputerScore;
+    document.getElementById(`player${num}-score`).innerText = oldPlayerScore - oldPlayerScore;
+    document.getElementById("player-funds").innerText = oldFunds - oldFunds;
+
+}
+
+function cashOutFunction() {
+
+    if (checkAmountOfPlayers() == 3) {
+        cashOutPlayer(1);
+        cashOutPlayer(2);
+        cashOutPlayer(3);
+    } else if (checkAmountOfPlayers() == 2) {
+        cashOutPlayer(1);
+        cashOutPlayer(2);
+    } else {
+        cashOutPlayer(1);
+    }
+}
+
 /**
  * removes the amount from player scores and funds then adds them to total
  * alerts if funds are not available
@@ -437,6 +479,7 @@ function cashOut() {
  */
 function buttonDisabled() {
 
+    // button disable https://stackoverflow.com/questions/13831601/disabling-and-enabling-a-html-input-button
     // funds and play button disable
     let funds = parseInt(document.getElementById("player-funds").innerText);
     let max = 1000;
@@ -498,7 +541,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     addFundsButton.focus();
 
-    cashOutButton.addEventListener("click", cashOut);
+    cashOutButton.addEventListener("click", cashOutFunction);
 
     for (buttons of document.getElementsByTagName("button")) {
         buttons.addEventListener("click", buttonDisabled);
