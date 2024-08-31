@@ -1,7 +1,7 @@
 // love maths project was used as a referance and some code was used 
 
 // list of global variables 
-const refreshButton = document.getElementById("refresh");
+const resetButton = document.getElementById("reset-btn");
 const rmvButton = document.getElementById("rmv-player");
 const addButton = document.getElementById("add-player");
 const playButton = document.getElementById("play-button");
@@ -12,7 +12,7 @@ const cashOutButton = document.getElementById("cash-out");
 /**
  * other then the amount of players this resets everything back to factory settings
  */
-function refreshPage() {
+function resetPage() {
 
     let reset = document.getElementsByClassName("reset");
 
@@ -490,7 +490,7 @@ function buttonDisabled() {
 // get the button elements and add event listeners to them
 window.addEventListener("DOMContentLoaded", (event) => {
 
-    refreshButton.addEventListener("click", refreshPage);
+    resetButton.addEventListener("click", resetPage);
     rmvButton.addEventListener("click", rmvPlayer);
     addButton.addEventListener("click", addPlayer);
     playButton.addEventListener("click", checkFunds);
