@@ -454,7 +454,7 @@ function buttonDisabled() {
         } else {
             cashOutButton.disabled = true;
         }
-    } else if (checkScore(1) == false) {
+    } else if (checkScore(1)) {
         cashOutButton.disabled = false;
     } else {
         cashOutButton.disabled = true;
