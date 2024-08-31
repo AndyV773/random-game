@@ -239,7 +239,7 @@ function checkScore(num) {
 
     let playerScore = parseInt(document.getElementById(`player${num}-score`).innerText);
 
-    if (playerScore == 0) {
+    if (playerScore > 0) {
         return true;
     } else {
         return false;
@@ -256,23 +256,23 @@ function rmvPlayer() {
     let scoresDiv = document.getElementById("scores-inner-div");
 
     if (checkAmountOfPlayers(3)) {
-        if (checkAmountOfPlayers(3) && checkScore(3)) {
+        if (checkAmountOfPlayers(3) && checkScore(3) != true) {
             userDiv.children[2].remove();
             scoresDiv.children[3].remove();
             stakeButtons[0].innerText = 10;
             stakeButtons[1].innerText = 20;
             stakeButtons[2].innerText = 40;
         } else {
-            alert("You must cash out before removing players");
+            alert("You must cash out before removing player");
         }
-    } else if (checkAmountOfPlayers(2) && checkScore(2)) {
+    } else if (checkAmountOfPlayers(2) && checkScore(2) != true) {
         userDiv.children[1].remove();
         scoresDiv.children[2].remove();
         stakeButtons[0].innerText = 5;
         stakeButtons[1].innerText = 10;
         stakeButtons[2].innerText = 20;
     } else {
-        alert("You must cash out before removing players");
+        alert("You must cash out before removing player");
     }
 
 }
@@ -443,13 +443,13 @@ function buttonDisabled() {
 
     // cash out button disable
     if (checkAmountOfPlayers(3)) {
-        if (checkScore(1) == false || checkScore(2) == false || checkScore(3) == false) {
+        if (checkScore(1) || checkScore(2) || checkScore(3)) {
             cashOutButton.disabled = false;
         } else {
             cashOutButton.disabled = true;
         }
     } else if (checkAmountOfPlayers(2)) {
-        if (checkScore(1) == false || checkScore(2) == false) {
+        if (checkScore(1) || checkScore(2)) {
             cashOutButton.disabled = false;
         } else {
             cashOutButton.disabled = true;
