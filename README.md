@@ -44,6 +44,14 @@ The user will also be able to add up to a maximum of 3 players. Each player is u
 ### CSS
 
 ### Lighthouse Testing
+**Desktop:**
+- Added aria-labels to buttons without text content to increase accessibility score
+- Added meta keywords and description to increase SEO score
+![lighthouse desktop score](assets/images/lhouse%20desktop.png)
+
+**Mobile:**
+- Slightly lower performance
+![lighthouse mobile score](assets/images/lhouse%20mobile.png)
 
 ## Future Features
 

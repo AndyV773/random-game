@@ -28,7 +28,6 @@ body {
 #game-zone-div {
     display: flex;
     justify-content: center;
-    flex: row wrap;
 }
 
 #game-zone {
