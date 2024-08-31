@@ -343,7 +343,7 @@ function ifPlayerLoses() {
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
     let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
-   
+
     if (checkAmountOfPlayers() == 3) {
         document.getElementById("computer-score").innerText = oldComputerScore + active / 3 * 2;
         document.getElementById("player-funds").innerText = oldFunds - active / 3;
@@ -428,13 +428,10 @@ function buttonDisabled() {
     funds == max || funds > 900 ? addFundsButton.disabled = true : addFundsButton.disabled = false;
 
     // add player button and remove player button disable
-    let user2 = document.getElementById("user2-card");
-    let user3 = document.getElementById("user3-card");
-
-    if (user3) {
+    if (checkAmountOfPlayers() == 3) {
         rmvButton.disabled = false;
         addButton.disabled = true;
-    } else if (user2 && user3 == undefined) {
+    } else if (checkAmountOfPlayers() == 2) {
         rmvButton.disabled = false;
         addButton.disabled = false;
     } else {
@@ -443,26 +440,19 @@ function buttonDisabled() {
     }
 
     // cash out button disable
-    let oldPlayer1Score = parseInt(document.getElementById("player1-score").innerText);
-
-    if (user3) {
-        let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
-        let oldPlayer3Score = parseInt(document.getElementById("player3-score").innerText);
-
-        if (oldPlayer1Score > 0 || oldPlayer2Score > 0 || oldPlayer3Score > 0) {
+    if (checkAmountOfPlayers() == 3) {
+        if (checkScore(1) == false || checkScore(2) == false || checkScore(3) == false) {
             cashOutButton.disabled = false;
         } else {
             cashOutButton.disabled = true;
         }
-    } else if (user2) {
-        let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
-
-        if (oldPlayer1Score > 0 || oldPlayer2Score > 0) {
+    } else if (checkAmountOfPlayers() == 2) {
+        if (checkScore(1) == false || checkScore(2) == false) {
             cashOutButton.disabled = false;
         } else {
             cashOutButton.disabled = true;
         }
-    } else if (oldPlayer1Score > 0) {
+    } else if (checkScore(1) == false) {
         cashOutButton.disabled = false;
     } else {
         cashOutButton.disabled = true;
