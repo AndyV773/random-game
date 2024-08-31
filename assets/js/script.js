@@ -159,7 +159,7 @@ function checkResults(a, b, num) {
             ifPlayerWins(num);
             playerResult.innerText = "You Win!";
         } else if (a > b) {
-        ifComputerWins();
+        ifPlayerLoses();
         playerResult.innerText = "You Lose!";
     } else {
         playerResult.innerText = "It's a Draw!";
@@ -338,18 +338,16 @@ function checkFunds() {
  * if the computer wins will remove the selected stake amount from funds
  * and add to the computers score
  */
-function ifComputerWins() {
+function ifPlayerLoses() {
 
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
     let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
-    let user2 = document.getElementById("user2-card");
-    let user3 = document.getElementById("user3-card");
-
-    if (user3) {
+   
+    if (checkAmountOfPlayers() == 3) {
         document.getElementById("computer-score").innerText = oldComputerScore + active / 3 * 2;
         document.getElementById("player-funds").innerText = oldFunds - active / 3;
-    } else if (user2) {
+    } else if (checkAmountOfPlayers() == 2) {
         document.getElementById("computer-score").innerText = oldComputerScore + active;
         document.getElementById("player-funds").innerText = oldFunds - active / 2;
     } else {
@@ -368,13 +366,11 @@ function ifPlayerWins(num) {
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
     let oldPlayerScore = parseInt(document.getElementById(`player${num}-score`).innerText);
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
-    let user2 = document.getElementById("user2-card");
-    let user3 = document.getElementById("user3-card");
 
-    if (user3) {
+    if (checkAmountOfPlayers() == 3) {
         document.getElementById(`player${num}-score`).innerText = oldPlayerScore + active / 3 * 2;
         document.getElementById("player-funds").innerText = oldFunds - active / 3;
-    } else if (user2) {
+    } else if (checkAmountOfPlayers() == 2) {
         document.getElementById(`player${num}-score`).innerText = oldPlayerScore + active;
         document.getElementById("player-funds").innerText = oldFunds - active / 2;
     } else {
