@@ -192,23 +192,33 @@ function extraPlayer(num) {
 }
 
 /**
+ * @returns the number of players
+ */
+function checkAmountOfPlayers() {
+    let user2 = document.getElementById("user2-card");
+    let user3 = document.getElementById("user3-card");
+
+    if (user3) {
+        return 3;
+    } else if (user2) {
+        return 2;
+    } else {
+        return 1
+    }
+
+}
+
+/**
  * checks how many players there are and then calls the correct function
  * adjusts the stake values
  */
 function addPlayer() {
 
-    let user2 = document.getElementById("user2-card");
-    let user3 = document.getElementById("user3-card");
-
-    if (user2) {
-        if (user2 != undefined && user3 == undefined) {
-            extraPlayer(3)
-            stakeButtons[0].innerText = 15;
-            stakeButtons[1].innerText = 30;
-            stakeButtons[2].innerText = 60;
-        } else {
-            alert("You can't add anymore players");
-        }
+    if (checkAmountOfPlayers() == 2) {
+        extraPlayer(3)
+        stakeButtons[0].innerText = 15;
+        stakeButtons[1].innerText = 30;
+        stakeButtons[2].innerText = 60;
     } else {
         extraPlayer(2)
         stakeButtons[0].innerText = 10;
@@ -242,32 +252,26 @@ function rmvPlayer() {
 
     let userDiv = document.getElementById("users-div");
     let scoresDiv = document.getElementById("scores-inner-div");
-    let user2 = document.getElementById("user2-card");
-    let user3 = document.getElementById("user3-card");
 
-    if (user2) {
-        if (user2 && user3) {
-            if (checkScore(2) && checkScore(3)) {
-                userDiv.children[2].remove();
-                scoresDiv.children[3].remove();
-                stakeButtons[0].innerText = 10;
-                stakeButtons[1].innerText = 20;
-                stakeButtons[2].innerText = 40;
-            } else {
-                alert("You must cash out before Removing players");
-            }
-        } else if (user2 && checkScore(2)) {
-            userDiv.children[1].remove();
-            scoresDiv.children[2].remove();
-            stakeButtons[0].innerText = 5;
-            stakeButtons[1].innerText = 10;
-            stakeButtons[2].innerText = 20;
+    if (checkAmountOfPlayers() == 3) {
+        if (checkAmountOfPlayers() == 3 && checkScore(3)) {
+            userDiv.children[2].remove();
+            scoresDiv.children[3].remove();
+            stakeButtons[0].innerText = 10;
+            stakeButtons[1].innerText = 20;
+            stakeButtons[2].innerText = 40;
         } else {
-            alert("You must cash out before Removing players");
+            alert("You must cash out before removing players");
         }
+    } else if (checkAmountOfPlayers() == 2 && checkScore(2)) {
+        userDiv.children[1].remove();
+        scoresDiv.children[2].remove();
+        stakeButtons[0].innerText = 5;
+        stakeButtons[1].innerText = 10;
+        stakeButtons[2].innerText = 20;
     } else {
-        alert("You can't remove anymore players");
-    };
+        alert("You must cash out before removing players");
+    }
 
 }
 
@@ -379,19 +383,10 @@ function ifPlayerWins(num) {
     }
 }
 
-function checkAmountOfPlayers() {
-    let user2 = document.getElementById("user2-card");
-    let user3 = document.getElementById("user3-card");
-
-    if (user3) {
-        return 3;
-    } else if (user2) {
-        return 2;
-    } else {
-        return 1;
-    }
-}
-
+/**
+ * removes player score and funds then adds them to total
+ * @param {player number} num 
+ */
 function cashOutPlayer(num) {
 
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
@@ -406,6 +401,9 @@ function cashOutPlayer(num) {
 
 }
 
+/**
+ * checks the amount of players and calls cashOutPlayer function
+ */
 function cashOutFunction() {
 
     if (checkAmountOfPlayers() == 3) {
@@ -418,60 +416,6 @@ function cashOutFunction() {
     } else {
         cashOutPlayer(1);
     }
-}
-
-/**
- * removes the amount from player scores and funds then adds them to total
- * alerts if funds are not available
- */
-function cashOut() {
-
-    let oldFunds = parseInt(document.getElementById("player-funds").innerText);
-    let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
-    let oldPlayer1Score = parseInt(document.getElementById("player1-score").innerText);
-    let oldCashOutTotal = parseInt(document.getElementById("cash-out-total").innerText);
-    let user2 = document.getElementById("user2-card");
-    let user3 = document.getElementById("user3-card");
-
-    if (user3) {
-        let oldPlayer3Score = parseInt(document.getElementById("player3-score").innerText);
-        let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
-        let threePlayerScore = oldPlayer1Score + oldPlayer2Score + oldPlayer3Score + oldFunds;
-
-        if (oldPlayer1Score > 0 || oldPlayer2Score > 0 || oldPlayer3Score > 0) {
-            document.getElementById("cash-out-total").innerText = oldCashOutTotal + threePlayerScore;
-            document.getElementById("computer-score").innerText = oldComputerScore - oldComputerScore;
-            document.getElementById("player3-score").innerText = oldPlayer3Score - oldPlayer3Score;
-            document.getElementById("player2-score").innerText = oldPlayer2Score - oldPlayer2Score;
-            document.getElementById("player1-score").innerText = oldPlayer1Score - oldPlayer1Score;
-            document.getElementById("player-funds").innerText = oldFunds - oldFunds;
-        } else {
-            alert("Insufficient Funds");
-        }
-    } else if (user2) {
-        let oldPlayer2Score = parseInt(document.getElementById("player2-score").innerText);
-        let twoPlayerScore = oldPlayer1Score + oldPlayer2Score + oldFunds;
-
-        if (oldPlayer1Score > 0 || oldPlayer2Score > 0) {
-            document.getElementById("cash-out-total").innerText = oldCashOutTotal + twoPlayerScore;
-            document.getElementById("computer-score").innerText = oldComputerScore - oldComputerScore;
-            document.getElementById("player2-score").innerText = oldPlayer2Score - oldPlayer2Score;
-            document.getElementById("player1-score").innerText = oldPlayer1Score - oldPlayer1Score;
-            document.getElementById("player-funds").innerText = oldFunds - oldFunds;
-        } else {
-            alert("Insufficient Funds");
-        }
-    } else if (oldPlayer1Score > 0) {
-        let onePlayerScore = oldPlayer1Score + oldFunds;
-
-        document.getElementById("cash-out-total").innerText = oldCashOutTotal + onePlayerScore;
-        document.getElementById("computer-score").innerText = oldComputerScore - oldComputerScore;
-        document.getElementById("player1-score").innerText = oldPlayer1Score - oldPlayer1Score;
-        document.getElementById("player-funds").innerText = oldFunds - oldFunds;
-    } else {
-        alert("Insufficient Funds");
-    }
-
 }
 
 /**
