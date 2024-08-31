@@ -22,7 +22,6 @@ The result is simple: the highest card ranking will win, with 2 being the lowest
 The user will also be able to add up to a maximum of 3 players. Each player is up against the computer, and their scores will be listed separately on the board. When the player decides to cash out, the total score will be added to the funds.
 
 ## WireFrame
-
 **Mobile:** 
 
 ![mobile wireframe of game](assets/images/wireframe-phone.png)
@@ -37,11 +36,16 @@ The user will also be able to add up to a maximum of 3 players. Each player is u
 
 ## Manual Testing
 
-## Validator Testing
+I have rigorously tested all buttons and functionality to ensure everything works as expected. This includes verifying that scores are calculated correctly, the correct player wins each round, and all buttons function properly.
 
+## Validator Testing
 ### HTML
+- The website's HTML has passed the offical HTML Validator, ensuring that there are no issues and complys with web standards.
+  - [W3C HTML validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fandyv773.github.io%2Frandom-game%2F)
 
 ### CSS
+- The website's CSS has passed the offical CSS Validator, ensuring that there are no issues and complys with web standards.
+- [W3C CSS validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fandyv773.github.io%2Frandom-game%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
 
 ### Lighthouse Testing
 **Desktop:**
@@ -50,7 +54,7 @@ The user will also be able to add up to a maximum of 3 players. Each player is u
 ![lighthouse desktop score](assets/images/lhouse%20desktop.png)
 
 **Mobile:**
-- Slightly lower performance
+- Slightly lower performance on mobile
 ![lighthouse mobile score](assets/images/lhouse%20mobile.png)
 
 ## Future Features
@@ -72,8 +76,18 @@ This will make the game more fun and engaging.
 
 ## Deployment
 
-## Credits
+The site has been deployed to GitHub pages on GitHub.
 
+- The steps to deploy are as follows:
+  - In the [GitHub Repository](https://github.com/AndyV773/random-game), navigate to the Settings tab
+  - In settings select pages in the left hand menu, select source deploy from branch
+  - Branch should be main and select from root, then click "Save"
+  - Once this has been selected and saved, the site should refresh. At the top of
+  - GitHub pages section, there will be a link to the site indicating the successful deployment.
+
+The deployed website can be found here: [Love Gambling](https://andyv773.github.io/random-game/)
+
+## Credits
 ### Content
 
 - I used the [Love Maths](https://github.com/Code-Institute-Solutions/readme-love-maths) from Code Institue as a refernce
