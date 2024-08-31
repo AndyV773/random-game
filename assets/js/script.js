@@ -106,6 +106,25 @@ function randomCard(a) {
 };
 
 /**
+ * 
+ * @param {player number} num 
+ * @returns true of false
+ */
+function checkAmountOfPlayers(num) {
+    let user2 = document.getElementById("user2-card");
+    let user3 = document.getElementById("user3-card");
+
+    if (user3 && num == 3) {
+        return true;
+    } else if (user2 && num == 2) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+/**
  * gets two random objects from randomCard function one for the computer and one for each user 
  * adds the object card string to the corresponding cards inner text
  * takes both the of the ranks from the card object and comparse them with the 
@@ -123,15 +142,15 @@ function runGame() {
     computerCard.innerText = card0.card;
     user1Card.innerText = card1.card;
 
-    let user2 = document.getElementById("user2-card");
-    if (user2) {
+    if (checkAmountOfPlayers(2)) {
+        let user2 = document.getElementById("user2-card");
         let card2 = randomCard(1);
         user2.innerHTML = card2.card;
         checkResults(card0.rank, card2.rank, 2);
     };
 
-    let user3 = document.getElementById("user3-card");
-    if (user3) {
+    if (checkAmountOfPlayers(3)) {
+        let user3 = document.getElementById("user3-card");
         let card3 = randomCard(1);
         user3.innerHTML = card3.card;
         checkResults(card0.rank, card3.rank, 3);
@@ -192,29 +211,12 @@ function extraPlayer(num) {
 }
 
 /**
- * @returns the number of players
- */
-function checkAmountOfPlayers() {
-    let user2 = document.getElementById("user2-card");
-    let user3 = document.getElementById("user3-card");
-
-    if (user3) {
-        return 3;
-    } else if (user2) {
-        return 2;
-    } else {
-        return 1
-    }
-
-}
-
-/**
  * checks how many players there are and then calls the correct function
  * adjusts the stake values
  */
 function addPlayer() {
 
-    if (checkAmountOfPlayers() == 2) {
+    if (checkAmountOfPlayers(2)) {
         extraPlayer(3)
         stakeButtons[0].innerText = 15;
         stakeButtons[1].innerText = 30;
@@ -253,8 +255,8 @@ function rmvPlayer() {
     let userDiv = document.getElementById("users-div");
     let scoresDiv = document.getElementById("scores-inner-div");
 
-    if (checkAmountOfPlayers() == 3) {
-        if (checkAmountOfPlayers() == 3 && checkScore(3)) {
+    if (checkAmountOfPlayers(3)) {
+        if (checkAmountOfPlayers(3) && checkScore(3)) {
             userDiv.children[2].remove();
             scoresDiv.children[3].remove();
             stakeButtons[0].innerText = 10;
@@ -263,7 +265,7 @@ function rmvPlayer() {
         } else {
             alert("You must cash out before removing players");
         }
-    } else if (checkAmountOfPlayers() == 2 && checkScore(2)) {
+    } else if (checkAmountOfPlayers(2) && checkScore(2)) {
         userDiv.children[1].remove();
         scoresDiv.children[2].remove();
         stakeButtons[0].innerText = 5;
@@ -344,10 +346,10 @@ function ifPlayerLoses() {
     let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
 
-    if (checkAmountOfPlayers() == 3) {
+    if (checkAmountOfPlayers(3)) {
         document.getElementById("computer-score").innerText = oldComputerScore + active / 3 * 2;
         document.getElementById("player-funds").innerText = oldFunds - active / 3;
-    } else if (checkAmountOfPlayers() == 2) {
+    } else if (checkAmountOfPlayers(2)) {
         document.getElementById("computer-score").innerText = oldComputerScore + active;
         document.getElementById("player-funds").innerText = oldFunds - active / 2;
     } else {
@@ -367,10 +369,10 @@ function ifPlayerWins(num) {
     let oldPlayerScore = parseInt(document.getElementById(`player${num}-score`).innerText);
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
 
-    if (checkAmountOfPlayers() == 3) {
+    if (checkAmountOfPlayers(3)) {
         document.getElementById(`player${num}-score`).innerText = oldPlayerScore + active / 3 * 2;
         document.getElementById("player-funds").innerText = oldFunds - active / 3;
-    } else if (checkAmountOfPlayers() == 2) {
+    } else if (checkAmountOfPlayers(2)) {
         document.getElementById(`player${num}-score`).innerText = oldPlayerScore + active;
         document.getElementById("player-funds").innerText = oldFunds - active / 2;
     } else {
@@ -402,11 +404,11 @@ function cashOutPlayer(num) {
  */
 function cashOutFunction() {
 
-    if (checkAmountOfPlayers() == 3) {
+    if (checkAmountOfPlayers(3)) {
         cashOutPlayer(1);
         cashOutPlayer(2);
         cashOutPlayer(3);
-    } else if (checkAmountOfPlayers() == 2) {
+    } else if (checkAmountOfPlayers(2)) {
         cashOutPlayer(1);
         cashOutPlayer(2);
     } else {
@@ -428,10 +430,10 @@ function buttonDisabled() {
     funds == max || funds > 900 ? addFundsButton.disabled = true : addFundsButton.disabled = false;
 
     // add player button and remove player button disable
-    if (checkAmountOfPlayers() == 3) {
+    if (checkAmountOfPlayers(3)) {
         rmvButton.disabled = false;
         addButton.disabled = true;
-    } else if (checkAmountOfPlayers() == 2) {
+    } else if (checkAmountOfPlayers(2)) {
         rmvButton.disabled = false;
         addButton.disabled = false;
     } else {
@@ -440,13 +442,13 @@ function buttonDisabled() {
     }
 
     // cash out button disable
-    if (checkAmountOfPlayers() == 3) {
+    if (checkAmountOfPlayers(3)) {
         if (checkScore(1) == false || checkScore(2) == false || checkScore(3) == false) {
             cashOutButton.disabled = false;
         } else {
             cashOutButton.disabled = true;
         }
-    } else if (checkAmountOfPlayers() == 2) {
+    } else if (checkAmountOfPlayers(2)) {
         if (checkScore(1) == false || checkScore(2) == false) {
             cashOutButton.disabled = false;
         } else {
