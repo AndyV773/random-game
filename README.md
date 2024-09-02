@@ -21,6 +21,70 @@ The result is simple: the highest card ranking will win, with 2 being the lowest
 
 The user will also be able to add up to a maximum of 3 players. Each player is up against the computer, and their scores will be listed separately on the board. When the player decides to cash out, the total score will be added to the funds.
 
+## Features
+- **Multiplater:**
+  - You can choose to play 1 to 3 players. More players can be added by adjusting the code, if needed.
+ 
+- **One Player:**
+
+![one player casino war](assets/images/player-1.png)
+
+- **Two Player:**
+
+![two player casino war](assets/images/player-2.png)
+
+- **Three Player:**
+
+![three player casino war](assets/images/player-3.png)
+
+- **Fits nicely on Mobiles:**
+
+![three players on galaxy z fold mobile](assets/images/z-fold.png)
+
+### Game Play
+
+- **Adding Funds:**
+  - The user begins by clicking the "Add Funds" button, which increases the available funds in increments of 100, up to a maximum of 1000.
+
+  ![add funds button](assets/images/add-funds.png)
+  - The total amount of funds added will be added to "Total In".
+
+![total in result](assets/images/total-in.png) 
+
+- **Player and Stake Selection:**
+  - The user can choose to have 1, 2, or 3 players participating in the game, using the + or - player buttons.
+
+  ![add or remove player buttons](assets/images/player-buttons.png)
+  - After selecting the number of players, the user can choose their stake amount, with a minimum of 5 per player and a maximum of 20 per player. The orange background indicates active stake amount.
+
+  ![one player stake buttons](assets/images/stake-buttons-1.png)
+  - The total stake amount will automatically adjust based on the number of players.
+
+  ![three player stake buttons](assets/images/stake-buttons-2.png)
+
+- **Placing a Bet:**
+  - Once the stake is set, the user can click the "Bet" button to start the game.
+
+  ![bet button](assets/images/bet-button.png)
+  - A short animation will play, after which the cards for all players and the dealer will be displayed on the board, showing the results for each player.
+  - If a player wins, their score will increase, and they will receive double their stake amount. If not, the dealer's score will increase.
+
+  ![player and dealer game scores](assets/images/game-scores.png)
+
+- **Cashing Out:**
+  - After the game, the user can click the "Cash Out" button to remove all players' scores and any remaining funds, adding them to the "Total Out".
+
+  ![cash out button](assets/images/cashout-button.png)
+  - The user can then compare the "Total In" with the "Total Out" to see the final result of their gameplay.
+
+  ![total in and total out results](assets/images/total-out.png)
+
+- **User Experience and Security Features:**
+  - Certain buttons are disabled during gameplay to enhance the user experience and implement basic security features.
+  - A "Reset" button is available in the top left corner, allowing the user to reset all scores and funds.
+  
+  ![reset button](assets/images/reset-button.png)
+  
 ## WireFrame
 **Mobile:** 
 
@@ -69,9 +133,6 @@ In the event of a draw, I intend to introduce a feature where players can choose
 2. **Full set of Cards with Images:**
 I would like to implement a full deck of cards with visual representations for each card. This will enhance the user experience by making the game more visually appealing.
 
-3. **Card Animation:**
-I would also like to implement a time-delayed animation. When bets are placed, the cards will go through an animation for a few seconds before revealing the final selection.
-
 This will make the game more fun and engaging.
 
 ## Deployment
@@ -93,7 +154,8 @@ The deployed website can be found here: [Love Gambling](https://andyv773.github.
 - I used the [Love Maths](https://github.com/Code-Institute-Solutions/readme-love-maths) from Code Institue as a refernce
 - The icons used were taken from [Font Awesome](https://fontawesome.com/)
 - To help with the JavaScript and choose colours, I used [W3S](https://www.w3schools.com/)
-- I also use [Stake Over Flow](https://stackoverflow.com/) to help with the JavaScipt
+- I used [Mozilla](https://developer.mozilla.org/en-US/) for the animation time intervals
+- I also use [Stake Over Flow](https://stackoverflow.com/) to help with some code
 
 ### Media
 
