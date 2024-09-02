@@ -187,10 +187,6 @@ function animatedDelay() {
  */
 function runGame() {
 
-    let funds = parseInt(document.getElementById("player-funds").innerText);
-    let active = parseInt(document.getElementsByClassName("active")[0].innerText);
-    funds < active ? playButton.disabled = true : playButton.disabled = false;
-
     // change the argument for card1 from 1 to 2, to increase the odds for the dealer 
     let card0 = randomCard(1);
     let card1 = randomCard(1);
@@ -242,6 +238,9 @@ function checkResults(a, b, num) {
     } else {
         playerResult.innerText = "It's a Draw!";
     };
+
+    let active = parseInt(document.getElementsByClassName("active")[0].innerText);
+    document.getElementById("player-funds").innerText < active ? playButton.disabled = true : playButton.disabled = false;
 
 }
 
@@ -364,10 +363,10 @@ function stakeValue() {
 function addFunds() {
 
     playButton.disabled = false;
-     
+
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
     let funds = document.getElementById("player-funds").innerText = oldFunds + 100;
-    let max = 1000; 
+    let max = 1000;
 
     if (funds > max) {
         alert("Sorry you can't add anymore funds");
@@ -421,6 +420,7 @@ function ifPlayerWins(num) {
         document.getElementById(`player${num}-score`).innerText = oldPlayerScore + active * 2;
         document.getElementById("player-funds").innerText = oldFunds - active;
     }
+
 }
 
 /**
@@ -456,6 +456,7 @@ function cashOutFunction() {
     } else {
         cashOutPlayer(1);
     }
+
 }
 
 /**
