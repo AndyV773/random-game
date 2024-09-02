@@ -125,6 +125,59 @@ function checkAmountOfPlayers(num) {
 }
 
 /**
+ * checks if funds are less then stake
+ * calls runGame function if false
+ */
+function checkFunds() {
+
+    let funds = parseInt(document.getElementById("player-funds").innerText);
+    let active = parseInt(document.getElementsByClassName("active")[0].innerText);
+
+    if (funds < active) {
+        alert(`Please add funds, minimum stake is set to ${active}.`);
+    } else {
+        animatedDelay();
+    }
+
+}
+
+/**
+ * resets player card results and runs a short animation
+ * before calling runGame function
+ */
+function animatedDelay() {
+
+    let playerReset = document.getElementsByClassName("player-reset");
+    for (players of playerReset) {
+        players.children[1].innerText = "";
+    }
+
+    // code from https://developer.mozilla.org/en-US/docs/Web/API/setInterval
+    function myTimer() {
+        let cards = randomCard(1);
+        let cardDeck = document.getElementsByClassName("cardDeck");
+
+        for (decks of cardDeck) {
+            decks.innerText = cards.card;
+        }
+    }
+
+    // calls myTimer function every 1ms before setTimeout calls clearRun
+    // (sets the speed of the animation)
+    let intervalID = setInterval(myTimer, 100);
+
+    function clearRun() {
+        clearInterval(intervalID);
+        runGame();
+    }
+
+    // calls clearRun function after 1.5s
+    // (sets the duration of the animation)
+    setTimeout(clearRun, 1500);
+
+}
+
+/**
  * gets two random objects from randomCard function one for the computer and one for each user 
  * adds the object card string to the corresponding cards inner text
  * takes both the of the ranks from the card object and comparse them with the 
@@ -316,23 +369,6 @@ function addFunds() {
 
     let oldcost = parseInt(document.getElementById("player-cost").innerText);
     document.getElementById("player-cost").innerText = oldcost + 100;
-
-}
-
-/**
- * checks if funds are less then stake
- * calls runGame function if false
- */
-function checkFunds() {
-
-    let funds = parseInt(document.getElementById("player-funds").innerText);
-    let active = parseInt(document.getElementsByClassName("active")[0].innerText);
-
-    if (funds < active) {
-        alert(`Please add funds, minimum stake is set to ${active}.`);
-    } else {
-        runGame();
-    }
 
 }
 
