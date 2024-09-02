@@ -382,27 +382,27 @@ function ifPlayerWins(num) {
 }
 
 /**
- * removes player score and funds then adds them to total
- * @param {player number} num 
- */
-function cashOutPlayer(num) {
-
-    let oldFunds = parseInt(document.getElementById("player-funds").innerText);
-    let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
-    let oldCashOutTotal = parseInt(document.getElementById("cash-out-total").innerText);
-    let oldPlayerScore = parseInt(document.getElementById(`player${num}-score`).innerText);
-
-    document.getElementById("cash-out-total").innerText = oldCashOutTotal + oldPlayerScore + oldFunds;
-    document.getElementById("computer-score").innerText = oldComputerScore - oldComputerScore;
-    document.getElementById(`player${num}-score`).innerText = oldPlayerScore - oldPlayerScore;
-    document.getElementById("player-funds").innerText = oldFunds - oldFunds;
-
-}
-
-/**
  * checks the amount of players and calls cashOutPlayer function
  */
 function cashOutFunction() {
+
+    /**
+     * removes player score and funds then adds them to total
+     * @param {player number} num 
+     */
+    function cashOutPlayer(num) {
+
+        let oldFunds = parseInt(document.getElementById("player-funds").innerText);
+        let oldComputerScore = parseInt(document.getElementById("computer-score").innerText);
+        let oldCashOutTotal = parseInt(document.getElementById("cash-out-total").innerText);
+        let oldPlayerScore = parseInt(document.getElementById(`player${num}-score`).innerText);
+
+        document.getElementById("cash-out-total").innerText = oldCashOutTotal + oldPlayerScore + oldFunds;
+        document.getElementById("computer-score").innerText = oldComputerScore - oldComputerScore;
+        document.getElementById(`player${num}-score`).innerText = oldPlayerScore - oldPlayerScore;
+        document.getElementById("player-funds").innerText = oldFunds - oldFunds;
+
+    }
 
     if (checkAmountOfPlayers(3)) {
         cashOutPlayer(1);
