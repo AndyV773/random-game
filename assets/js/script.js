@@ -134,6 +134,7 @@ function checkFunds() {
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
 
     if (funds < active) {
+        playButton.disabled = true;
         alert(`Please add funds, minimum stake is set to ${active}.`);
     } else {
         animatedDelay();
@@ -147,6 +148,7 @@ function checkFunds() {
  */
 function animatedDelay() {
 
+    playButton.disabled = true;
     let playerReset = document.getElementsByClassName("player-reset");
     for (players of playerReset) {
         players.children[1].innerText = "";
@@ -184,6 +186,10 @@ function animatedDelay() {
  * corresponding check results function
  */
 function runGame() {
+
+    let funds = parseInt(document.getElementById("player-funds").innerText);
+    let active = parseInt(document.getElementsByClassName("active")[0].innerText);
+    funds < active ? playButton.disabled = true : playButton.disabled = false;
 
     // change the argument for card1 from 1 to 2, to increase the odds for the dealer 
     let card0 = randomCard(1);
@@ -357,11 +363,11 @@ function stakeValue() {
  */
 function addFunds() {
 
-    playButton.focus();
-
+    playButton.disabled = false;
+     
     let oldFunds = parseInt(document.getElementById("player-funds").innerText);
     let funds = document.getElementById("player-funds").innerText = oldFunds + 100;
-    let max = 1000;
+    let max = 1000; 
 
     if (funds > max) {
         alert("Sorry you can't add anymore funds");
@@ -458,11 +464,10 @@ function cashOutFunction() {
 function buttonDisabled() {
 
     // button disable https://stackoverflow.com/questions/13831601/disabling-and-enabling-a-html-input-button
-    // funds and play button disable
+    // funds button disable
     let funds = parseInt(document.getElementById("player-funds").innerText);
     let max = 1000;
 
-    funds != 0 ? playButton.disabled = false : playButton.disabled = true;
     funds == max || funds > 900 ? addFundsButton.disabled = true : addFundsButton.disabled = false;
 
     // add player button and remove player button disable
@@ -507,8 +512,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     playButton.addEventListener("click", checkFunds);
     addFundsButton.addEventListener("click", addFunds);
 
-    addFundsButton.focus();
-
     cashOutButton.addEventListener("click", cashOutFunction);
 
     for (buttons of document.getElementsByTagName("button")) {
@@ -518,11 +521,5 @@ window.addEventListener("DOMContentLoaded", (event) => {
     for (buttons of stakeButtons) {
         buttons.addEventListener("click", stakeValue);
     }
-
-    document.getElementById("play-button").addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-            checkFunds();
-        }
-    });
 
 });
