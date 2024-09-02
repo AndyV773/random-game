@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- meta tags for search engines -->
-    <meta name="description"
-        content="Love Gambling, Casino War Game">
-    <meta name="keywords"
-        content="Love Gambling, casino war, game, casino, gambling, betting, cards">
+    <meta name="description" content="Love Gambling, Casino War Game">
+    <meta name="keywords" content="Love Gambling, casino war, game, casino, gambling, betting, cards">
     <!-- favicon -->
     <link rel='shortcut icon' type='image/x-icon' href='favicon.ico'>
     <link rel="stylesheet" href="assets/css/style.css">
@@ -67,14 +65,14 @@
         </div>
         <div id="funds-div">
             <button id="add-funds" class="btn--gray">Add Funds</button>
-            <p>Funds: <span id="player-funds" class="reset">0</span><br>
-                Total Costs: <span id="player-cost" class="reset">0</span></p>
+            <p>Funds: <span id="player-funds" class="reset">0</span></p>
         </div>
     </div>
     <div id="cash-out-div">
         <button id="cash-out" class="btn--pink" disabled>Cash Out!</button>
     </div>
-    <p class="center">Total: <span id="cash-out-total" class="reset">0</span></p>
+    <p class="center">Total In: <span id="player-cost" class="reset">0</span></p>
+    <p class="center">Toatl Out: <span id="cash-out-total" class="reset">0</span></p>
     <!-- lower section -->
     <section id="about-section">
         <div id="about-div">
@@ -96,6 +94,7 @@
                         <strong>Add Funds:</strong>
                         <p>To play, you must add funds using the <code class="btn--mini--gray btn--mini">Add
                                 Funds</code> button. This will add funds in increments of 100, with a maximum of 1000.
+                            You will also be able to keep track of spending at "Total In".
                         </p>
                     </li>
                     <li>
@@ -127,8 +126,9 @@
                         <p>When you have finished playing, you can cash out your score using the <code
                                 class="btn--mini btn--mini--pink">Cash Out!</code> button. This will remove both
                             player's
-                            scores from the board and add any remaining funds to the total. You can then compare you
-                            total amount to the initial funds to see if you came out on top or not.</p>
+                            scores from the board and add any remaining funds to "Total Out". You can then compare
+                            you're
+                            total amount out to the initial funds "Total In" to see if you came out on top or not.</p>
                     </li>
                 </ol>
                 <p>Remember, this is a complete game of chance. Good Luck!</p>

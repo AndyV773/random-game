@@ -160,6 +160,10 @@ body {
     justify-content: center;
 }
 
+#funds-div > p {
+    margin-top: 25px;
+}
+
 .btn--gray {
     background-color: #999;
     border-radius: 5px;
