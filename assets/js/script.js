@@ -149,6 +149,7 @@ function checkFunds() {
 function animatedDelay() {
 
     playButton.disabled = true;
+
     let playerReset = document.getElementsByClassName("player-reset");
     for (players of playerReset) {
         players.children[1].innerText = "";
@@ -241,6 +242,8 @@ function checkResults(a, b, num) {
 
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
     document.getElementById("player-funds").innerText < active ? playButton.disabled = true : playButton.disabled = false;
+
+    buttonDisabled();
 
 }
 
