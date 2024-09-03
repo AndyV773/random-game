@@ -169,28 +169,26 @@ This will make the game more fun and engaging.
 
 ## Deployment
 
-The site has been deployed to GitHub pages on GitHub.
+The site was deployed to GitHub Pages. The steps to deploy are as follows:
 
-- The steps to deploy are as follows:
-  - In the [GitHub Repository](https://github.com/AndyV773/random-game), navigate to the Settings tab
-  - In settings select pages in the left hand menu, select source deploy from branch
-  - Branch should be main and select from root, then click "Save"
-  - Once this has been selected and saved, the site should refresh. At the top of
-  - GitHub pages section, there will be a link to the site indicating the successful deployment.
+- In the [GitHub Repository](https://github.com/AndyV773/random-game), navigate to the Settings tab
+- From the source section drop-down menu, select the **Main** Branch, then click "Save".
+- The page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment.
+- The site has been deployed to GitHub pages on GitHub.
 
 The deployed website can be found here: [Love Gambling](https://andyv773.github.io/random-game/)
 
 ## Credits
 ### Content
 
-- Baed on the original game [Casino War](https://en.wikipedia.org/wiki/Casino_War)
-- I used the [Love Maths](https://github.com/Code-Institute-Solutions/readme-love-maths) from Code Institue as a refernce
-- The icons used were taken from [Font Awesome](https://fontawesome.com/)
-- To help with the JavaScript and choose colours, I used [W3S](https://www.w3schools.com/)
-- I used [Mozilla](https://developer.mozilla.org/en-US/) for the animation time intervals
-- I also use [Stake Over Flow](https://stackoverflow.com/) to help with some code
+- Baed on the original game [Casino War](https://en.wikipedia.org/wiki/Casino_War).
+- I used the [Love Maths](https://github.com/Code-Institute-Solutions/readme-love-maths) from Code Institue as a refernce.
+- The icons used were taken from [Font Awesome](https://fontawesome.com/).
+- To help with the JavaScript and choose colours, I used [W3S](https://www.w3schools.com/).
+- I used [Mozilla](https://developer.mozilla.org/en-US/) for the animation time intervals.
+- I also use [Stake Over Flow](https://stackoverflow.com/) to help with some code.
 
 ### Media
 
-- The Favicon icon was generated using [Ionos](https://www.ionos.co.uk/tools/favicon-generator)
-- The Logo images was take from [Adobe](https://stock.adobe.com/search/images?k=playing+card+logo&asset_id=96484510)
+- The Favicon icon was generated using [Ionos](https://www.ionos.co.uk/tools/favicon-generator).
+- The Logo images was take from [Adobe](https://stock.adobe.com/search/images?k=playing+card+logo&asset_id=96484510).
