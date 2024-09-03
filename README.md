@@ -12,6 +12,21 @@
 
 A curious customer, intrigued by the allure of the game, decides to gamble a small amount of money. Luck is on his side, and he wins, encouraging him to keep playing. The thrill of victory drives him to place more bets. However, soon the tide turns, and he begins to lose. Determined to win back his losses, he continues to gamble, pouring more money into the game. Before he realizes it, his funds are depleted, and he’s in debt. The moral of the story.. the computer always wins in the end.
 
+**New User**
+- I want to know what the site is for.
+- I want to easily learn how to play the game so that I can quickly start playing.
+- I want to be able to play with minimal effort and clearly understand how to do so.
+- I want it to be clear if I win or lose.
+
+**Returning User**
+- I want to come back and play.
+
+**Other Customer Scenarios**
+
+**Site Adminstrator**
+- As a site administrator, the game should run smoothly and remain secure.
+- As a site administrator, must ensure that the game remains fair and engaging.
+
 ## Features
 - **Multiplater:**
   - You can choose to play 1 to 3 players. More players can be added by adjusting the code, if needed.
