@@ -14,14 +14,19 @@ A curious customer, intrigued by the allure of the game, decides to gamble a sma
 
 **New User**
 - I want to know what the site is for.
-- I want to easily learn how to play the game so that I can quickly start playing.
+- I want to easily learn how to play the game, so that I can quickly start playing.
 - I want to be able to play with minimal effort and clearly understand how to do so.
-- I want it to be clear if I win or lose.
+- I want it to be clear if I win or lose/How I win or lose.
 
 **Returning User**
 - I want to come back and play.
+- I want to see if there are any new features.
+- I want to see if I can win.
+- Loses..
 
 **Other Customer Scenarios**
+- Wins, not by much.
+- Comes out even, just enjoys playing.
 
 **Site Adminstrator**
 - As a site administrator, the game should run smoothly and remain secure.
@@ -48,6 +53,10 @@ A curious customer, intrigued by the allure of the game, decides to gamble a sma
 ![three players on galaxy z fold mobile](assets/images/z-fold.png)
 
 ### Game Play
+
+- **How to Play:**
+  - there is a "How to Play" link located at the top of the page. Clicking this link will take the user to the bottom of the page, where they will find clear instructions on how to play the game, for greater overall user experience.
+![how to play instructions](assets/images/how-to-play.png)  
 
 - **Adding Funds:**
   - The user begins by clicking the "Add Funds" button, which increases the available funds in increments of 100, up to a maximum of 1000.
