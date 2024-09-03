@@ -112,13 +112,22 @@ I have rigorously tested all buttons and functionality to ensure everything work
 
 ### Lighthouse Testing
 **Desktop:**
-- Added aria-labels to buttons without text content to increase accessibility score
-- Added meta keywords and description to increase SEO score
 ![lighthouse desktop score](assets/images/lhouse%20desktop.png)
 
 **Mobile:**
 - Slightly lower performance on mobile
 ![lighthouse mobile score](assets/images/lhouse%20mobile.png)
+
+## Debugging
+- **Preventing Excessive Fund Additions:**
+I encountered an issue where the add funds button could be clicked multiple times, causing the funds to exceed the maximum limit. To fix this, I disabled the add funds button once the selected amount was reached, preventing any further increases beyond the intended limit.
+
+- **Preventing Multiple Bets:**
+I also had an issue where the bet button could be clicked multiple times during the animation on the round, causing the game to use all the funds and even result in negative funds. To fix this, I disabled the bet button while the animation function was running. After the game calculated the scores, I reactivated the bet button only if the funds were sufficient.
+
+- **Lighthouse Score Improvements:**
+  - Originally, my accessibility score was lower due to missing "aria-labels" on buttons without text content. I improved this by adding the corresponding aria-labels, ensuring better screen reader support.
+  - I added meta keywords and a description to increase SEO score
 
 ## Future Features
 
