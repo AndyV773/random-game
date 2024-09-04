@@ -16,19 +16,19 @@ function resetPage() {
 
     let reset = document.getElementsByClassName("reset");
 
-    for (set of reset) {
+    for (let set of reset) {
         set.innerText = 0;
     }
 
     let cardDeck = document.getElementsByClassName("cardDeck");
 
-    for (decks of cardDeck) {
+    for (let decks of cardDeck) {
         decks.innerText = "";
     }
 
     // i could have added player-reset to the P element but decided to do it like this 
     let playerReset = document.getElementsByClassName("player-reset");
-    for (players of playerReset) {
+    for (let players of playerReset) {
         players.children[1].innerText = "";
     }
 
@@ -103,7 +103,7 @@ function randomCard(a) {
 
     return cards;
 
-};
+}
 
 /**
  * 
@@ -151,7 +151,7 @@ function animatedDelay() {
     playButton.disabled = true;
 
     let playerReset = document.getElementsByClassName("player-reset");
-    for (players of playerReset) {
+    for (let players of playerReset) {
         players.children[1].innerText = "";
     }
 
@@ -160,7 +160,7 @@ function animatedDelay() {
         let cards = randomCard(1);
         let cardDeck = document.getElementsByClassName("cardDeck");
 
-        for (decks of cardDeck) {
+        for (let decks of cardDeck) {
             decks.innerText = cards.card;
         }
     }
@@ -203,14 +203,14 @@ function runGame() {
         let card2 = randomCard(1);
         user2.innerHTML = card2.card;
         checkResults(card0.rank, card2.rank, 2);
-    };
+    }
 
     if (checkAmountOfPlayers(3)) {
         let user3 = document.getElementById("user3-card");
         let card3 = randomCard(1);
         user3.innerHTML = card3.card;
         checkResults(card0.rank, card3.rank, 3);
-    };
+    }
 
     checkResults(card0.rank, card1.rank, 1);
 
@@ -238,7 +238,7 @@ function checkResults(a, b, num) {
         playerResult.innerText = "You Lose!";
     } else {
         playerResult.innerText = "It's a Draw!";
-    };
+    }
 
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
     document.getElementById("player-funds").innerText < active ? playButton.disabled = true : playButton.disabled = false;
@@ -278,12 +278,12 @@ function extraPlayer(num) {
 function addPlayer() {
 
     if (checkAmountOfPlayers(2)) {
-        extraPlayer(3)
+        extraPlayer(3);
         stakeButtons[0].innerText = 15;
         stakeButtons[1].innerText = 30;
         stakeButtons[2].innerText = 60;
     } else {
-        extraPlayer(2)
+        extraPlayer(2);
         stakeButtons[0].innerText = 10;
         stakeButtons[1].innerText = 20;
         stakeButtons[2].innerText = 40;
@@ -352,7 +352,7 @@ function stakeValue() {
     this.className += " active";
 
     if (active = !undefined) {
-        currentActive = parseInt(document.getElementsByClassName("active")[0].innerText);
+        let currentActive = parseInt(document.getElementsByClassName("active")[0].innerText);
         alert(`Stake set to ${currentActive}`);
     } else {
         alert("Error current stake is Unkown");
@@ -518,11 +518,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     cashOutButton.addEventListener("click", cashOutFunction);
 
-    for (buttons of document.getElementsByTagName("button")) {
+    for (let buttons of document.getElementsByTagName("button")) {
         buttons.addEventListener("click", buttonDisabled);
     }
 
-    for (buttons of stakeButtons) {
+    for (let buttons of stakeButtons) {
         buttons.addEventListener("click", stakeValue);
     }
 
