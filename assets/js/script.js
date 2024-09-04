@@ -287,7 +287,7 @@ function addPlayer() {
         stakeButtons[0].innerText = 10;
         stakeButtons[1].innerText = 20;
         stakeButtons[2].innerText = 40;
-    };
+    }
 
 }
 
@@ -459,6 +459,8 @@ function cashOutFunction() {
     } else {
         cashOutPlayer(1);
     }
+
+    playButton.disabled = true;
 
 }
 
