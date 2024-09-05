@@ -289,6 +289,8 @@ function addPlayer() {
         stakeButtons[2].innerText = 40;
     }
 
+    buttonDisabled();
+
 }
 
 /**
@@ -336,6 +338,8 @@ function rmvPlayer() {
         alert("You must cash out before removing player");
     }
 
+    buttonDisabled();
+
 }
 
 /**
@@ -377,6 +381,8 @@ function addFunds() {
 
     let oldcost = parseInt(document.getElementById("player-cost").innerText);
     document.getElementById("player-cost").innerText = oldcost + 100;
+
+    buttonDisabled();
 
 }
 
@@ -461,6 +467,7 @@ function cashOutFunction() {
     }
 
     playButton.disabled = true;
+    buttonDisabled();
 
 }
 
