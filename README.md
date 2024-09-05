@@ -134,6 +134,10 @@ I have rigorously tested all buttons and functionality to ensure everything work
 - The website's CSS has passed the offical CSS Validator, ensuring that there are no issues and complys with web standards.
   - [W3C CSS validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fandyv773.github.io%2Frandom-game%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
 
+### JavaScript
+- the website's JavaScript
+  - [JS Hint]()  
+
 ### Lighthouse Testing
 **Desktop:**
 ![lighthouse desktop score](assets/images/lhouse%20desktop.png)

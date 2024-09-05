@@ -353,7 +353,7 @@ function stakeValue() {
 
     if (active = !undefined) {
         let currentActive = parseInt(document.getElementsByClassName("active")[0].innerText);
-        alert(`Stake set to ${currentActive}`);
+        alert(`Set Stake to ${currentActive}`);
     } else {
         alert("Error current stake is Unkown");
     }
@@ -509,6 +509,30 @@ function buttonDisabled() {
 
 }
 
+/**
+ * stake button disable
+ */
+function stakeDisable(event) {
+
+    // https://stackoverflow.com/questions/48239/getting-the-id-of-the-element-that-fired-an-event
+    let clickedElement = event.target.id;
+
+    if (clickedElement === "1") {
+        document.getElementById("1").disabled = true;
+        document.getElementById("2").disabled = false;
+        document.getElementById("3").disabled = false;
+    } else if (clickedElement === "2") {
+        document.getElementById("2").disabled = true;
+        document.getElementById("1").disabled = false;
+        document.getElementById("3").disabled = false;
+    } else if (clickedElement === "3") {
+        document.getElementById("3").disabled = true;
+        document.getElementById("2").disabled = false;
+        document.getElementById("1").disabled = false;
+    }
+
+}
+
 // get the button elements and add event listeners to them
 window.addEventListener("DOMContentLoaded", (event) => {
 
@@ -517,15 +541,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
     addButton.addEventListener("click", addPlayer);
     playButton.addEventListener("click", checkFunds);
     addFundsButton.addEventListener("click", addFunds);
-
     cashOutButton.addEventListener("click", cashOutFunction);
-
-    for (let buttons of document.getElementsByTagName("button")) {
-        buttons.addEventListener("click", buttonDisabled);
-    }
 
     for (let buttons of stakeButtons) {
         buttons.addEventListener("click", stakeValue);
     }
+
+    document.getElementById("1").addEventListener("click", stakeDisable);
+    document.getElementById("2").addEventListener("click", stakeDisable);
+    document.getElementById("3").addEventListener("click", stakeDisable);
 
 });
