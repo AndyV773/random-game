@@ -10,7 +10,7 @@
 
 ## User Story
 
-A curious customer, intrigued by the allure of the game, decides to gamble a small amount of money. Luck is on his side, and he wins, encouraging him to keep playing. The thrill of victory drives him to place more bets. However, soon the tide turns, and he begins to lose. Determined to win back his losses, he continues to gamble, pouring more money into the game. Before he realizes it, his funds are depleted, and he’s in debt. The moral of the story.. the computer always wins in the end.
+A curious customer, intrigued by the allure of the game, decides to gamble a small amount of money. Luck is on his side, and he wins, encouraging him to keep playing. The thrill of victory drives him to place more bets. However, soon the tables turn, and he begins to lose. Determined to win back his losses, he continues to gamble, pouring more money into the game. Before he realizes it, his funds are depleted, and he’s in debt. The moral of the story.. the computer always wins in the end.
 
 **New User**
 - I want to know what the site is for.
@@ -56,6 +56,7 @@ A curious customer, intrigued by the allure of the game, decides to gamble a sma
 
 - **How to Play:**
   - there is a "How to Play" link located at the top of the page. Clicking this link will take the user to the bottom of the page, where they will find clear instructions on how to play the game, for greater overall user experience.
+
 ![how to play instructions](assets/images/how-to-play.png)  
 
 - **Adding Funds:**
@@ -96,7 +97,7 @@ A curious customer, intrigued by the allure of the game, decides to gamble a sma
 
 - **User Experience and Security Features:**
   - Certain buttons are disabled during gameplay to enhance the user experience and implement basic security features.
-  - A "Reset" button is available in the top left corner, allowing the user to reset all scores and funds.
+  - A "Reset" button is available in the top right corner, allowing the user to reset all scores and funds.
   
   ![reset button](assets/images/reset-button.png)
 
