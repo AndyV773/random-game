@@ -103,7 +103,9 @@ function randomCard(a) {
     }];
 
     // push array of objects in to another (...) https://stackoverflow.com/questions/64797162/push-an-array-into-the-same-array-javascript
-    a == 2 ? cardArray.push(...extraCards) : a = 1;
+    if (a === 2) {
+        cardArray.push(...extraCards);
+    }
 
     // random array from https://stackoverflow.com/questions/43267033/understanding-the-use-of-math-floor-when-randomly-accessing-an-array
     let cards = cardArray[Math.floor(Math.random() * cardArray.length)];
@@ -248,7 +250,12 @@ function checkResults(a, b, num) {
     }
 
     let active = parseInt(document.getElementsByClassName("active")[0].innerText);
-    document.getElementById("player-funds").innerText < active ? playButton.disabled = true : playButton.disabled = false;
+
+    if (document.getElementById("player-funds").innerText < active) {
+        playButton.disabled = true;
+    } else {
+        playButton.disabled = false;
+    }
 
     buttonDisabled();
 
@@ -362,7 +369,7 @@ function stakeValue() {
     active[0].className = active[0].className.replace(" active", "");
     this.className += " active";
 
-    if (active = !undefined) {
+    if (active != undefined) {
         let currentActive = parseInt(document.getElementsByClassName("active")[0].innerText);
         alert(`Set Stake to ${currentActive}`);
     } else {
@@ -488,7 +495,11 @@ function buttonDisabled() {
     let funds = parseInt(document.getElementById("player-funds").innerText);
     let max = 1000;
 
-    funds == max || funds > 900 ? addFundsButton.disabled = true : addFundsButton.disabled = false;
+    if (funds == max || funds > 900) {
+        addFundsButton.disabled = true;
+    } else {
+        addFundsButton.disabled = false;
+    }
 
     // add player button and remove player button disable
     if (checkAmountOfPlayers(3)) {
