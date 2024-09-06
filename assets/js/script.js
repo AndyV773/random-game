@@ -38,6 +38,13 @@ function resetPage() {
     active[0].className = active[0].className.replace(" active", "");
     setStake5.className += " active";
 
+    document.getElementById("1").disabled = true;
+    document.getElementById("2").disabled = false;
+    document.getElementById("3").disabled = false;
+
+    playButton.disabled = true;
+    buttonDisabled();
+
 }
 
 /**
