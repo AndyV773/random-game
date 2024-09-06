@@ -38,9 +38,10 @@ function resetPage() {
     active[0].className = active[0].className.replace(" active", "");
     setStake5.className += " active";
 
-    document.getElementById("1").disabled = true;
-    document.getElementById("2").disabled = false;
-    document.getElementById("3").disabled = false;
+    // resets disabled buttons
+    document.getElementById("stake1").disabled = true;
+    document.getElementById("stake2").disabled = false;
+    document.getElementById("stake3").disabled = false;
 
     playButton.disabled = true;
     buttonDisabled();
@@ -230,6 +231,7 @@ function runGame() {
  * then takes the argument of the players number
  * works out the higher rank and calls the correct function for the winner
  * also sets the results within html
+ * and calls buttonDisabled function
  * @param {computers card} a 
  * @param {players card} b 
  * @param {players number} num 
@@ -287,7 +289,7 @@ function extraPlayer(num) {
 
 /**
  * checks how many players there are and then calls the correct function
- * adjusts the stake values
+ * adjusts the stake values and calls buttonDisabled function
  */
 function addPlayer() {
 
@@ -326,6 +328,7 @@ function checkScore(num) {
 
 /**
  * removes player if checkScore() is equal to true
+ * calls buttonDisabled function
  */
 function rmvPlayer() {
 
@@ -384,7 +387,8 @@ function stakeValue() {
 }
 
 /**
- * add funds to the game
+ * adds funds to the game
+ * calls buttonDisabled function
  */
 function addFunds() {
 
@@ -453,6 +457,7 @@ function ifPlayerWins(num) {
 
 /**
  * checks the amount of players and calls cashOutPlayer function
+ * also calls buttonDisabled function
  */
 function cashOutFunction() {
 
@@ -540,31 +545,31 @@ function buttonDisabled() {
 }
 
 /**
- * stake button disable
+ * disables stake buttons when active
  */
 function stakeDisable(event) {
 
     // https://stackoverflow.com/questions/48239/getting-the-id-of-the-element-that-fired-an-event
     let clickedElement = event.target.id;
 
-    if (clickedElement === "1") {
-        document.getElementById("1").disabled = true;
-        document.getElementById("2").disabled = false;
-        document.getElementById("3").disabled = false;
-    } else if (clickedElement === "2") {
-        document.getElementById("2").disabled = true;
-        document.getElementById("1").disabled = false;
-        document.getElementById("3").disabled = false;
-    } else if (clickedElement === "3") {
-        document.getElementById("3").disabled = true;
-        document.getElementById("2").disabled = false;
-        document.getElementById("1").disabled = false;
+    if (clickedElement === "stake1") {
+        document.getElementById("stake1").disabled = true;
+        document.getElementById("stake2").disabled = false;
+        document.getElementById("stake3").disabled = false;
+    } else if (clickedElement === "stake2") {
+        document.getElementById("stake2").disabled = true;
+        document.getElementById("stake1").disabled = false;
+        document.getElementById("stake3").disabled = false;
+    } else if (clickedElement === "stake3") {
+        document.getElementById("stake3").disabled = true;
+        document.getElementById("stake2").disabled = false;
+        document.getElementById("stake1").disabled = false;
     }
 
 }
 
 // get the button elements and add event listeners to them
-window.addEventListener("DOMContentLoaded", (event) => {
+window.addEventListener("DOMContentLoaded", () => {
 
     resetButton.addEventListener("click", resetPage);
     rmvButton.addEventListener("click", rmvPlayer);
@@ -575,10 +580,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     for (let buttons of stakeButtons) {
         buttons.addEventListener("click", stakeValue);
+        buttons.addEventListener("click", stakeDisable);
     }
-
-    document.getElementById("1").addEventListener("click", stakeDisable);
-    document.getElementById("2").addEventListener("click", stakeDisable);
-    document.getElementById("3").addEventListener("click", stakeDisable);
 
 });
