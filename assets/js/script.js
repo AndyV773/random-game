@@ -372,6 +372,11 @@ function stakeValue() {
     if (active != undefined) {
         let currentActive = parseInt(document.getElementsByClassName("active")[0].innerText);
         alert(`Set Stake to ${currentActive}`);
+        if (document.getElementById("player-funds").innerText >= currentActive) {
+            playButton.disabled = false;
+        } else {
+            playButton.disabled = true;
+        }
     } else {
         alert("Error current stake is Unkown");
     }
