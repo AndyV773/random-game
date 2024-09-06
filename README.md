@@ -137,7 +137,9 @@ I have rigorously tested all buttons and functionality to ensure everything work
 
 ### JavaScript
 - the website's JavaScript
-  - [JS Hint]()  
+  - [JS Hint](https://jshint.com/)  
+
+![js hint score](assets/images/jshint.png)
 
 ### Lighthouse Testing
 **Desktop:**
